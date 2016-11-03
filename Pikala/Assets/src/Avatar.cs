@@ -28,11 +28,11 @@ public class Avatar : MonoBehaviour {
     }
 	public void BoyDolphinRun()
 	{
-		anim.Play("boy_dolphin_run");
+		anim.CrossFade("boy_dolphin_run", 0.15f);
 	}
 	public void GirlDolphinRun()
 	{
-		anim.Play("girl_dolphin_run");
+		anim.CrossFade("girl_dolphin_run", 0.15f);
 	}
     public void MonkeyIdle()
     {
@@ -160,20 +160,20 @@ public class Avatar : MonoBehaviour {
 	public void BoyDolphinIdle()
 	{
         print("BoyDolphinIdle");
-		anim.Play("boy_dolphin_idle",0, 0);
+		anim.CrossFade("boy_dolphin_idle", 0.15f);
 	}
 	public void BoyDolphinTalk()
 	{
         print("BoyDolphinTalk");
-        anim.Play("boy_dolphin_talk", 0, 0);
+        anim.CrossFade("boy_dolphin_talk", 0.15f);
 	}
 	public void GirlDolphinIdle()
 	{
-		anim.Play("girl_dolphin_idle",0, 0);
+		anim.CrossFade("girl_dolphin_idle", 0.15f);
 	}
 	public void GirlDolphinTalk()
 	{
-		anim.Play("girl_dolphin_talk",0, 0);
+		anim.CrossFade("girl_dolphin_talk", 0.15f);
 	}
 
 }
