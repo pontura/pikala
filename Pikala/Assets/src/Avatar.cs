@@ -36,7 +36,7 @@ public class Avatar : MonoBehaviour {
 	}
     public void MonkeyIdle()
     {
-        anim.CrossFade("girl_monkey_idle", 0.15f);
+        anim.Play("girl_monkey_idle", 0, 0);
     }
 	public void GirlDolphinWin()
 	{
