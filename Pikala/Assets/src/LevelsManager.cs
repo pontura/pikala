@@ -25,6 +25,16 @@ public class LevelsManager : MonoBehaviour {
         Events.OnLevelComplete += OnLevelComplete;
         Events.OnOkWord += OnOkWord;
         Events.ResetApp += ResetApp;
+
+        int unlockedRoute = PlayerPrefs.GetInt("unlockedRoute", 1);
+        if(unlockedRoute>1)
+        {
+            introPlayed = true;
+            frogger_IntroPlayed = true;
+            monkey_IntroPlayed = true;
+            bridge_IntroPlayed = true;
+            dolphin_IntroPlayed = true;
+        }
     }
     void OnDestroy()
     {
