@@ -1,0 +1,37 @@
+{
+	texts:
+	[
+		["PUENTE", "PUENTE"],
+		["BARCO", "BARKO"],
+		["ROJO", "ROJO"],
+		["PIEDRA", "PIEDRA"],
+		["HELADO", "HELADO"],
+		["CHOZA", "2OZA"],
+		["ESTRELLA", "ESTRE3A"],
+		["NIÑO", "NIÑO"],
+		["LLAVE", "3AVE"],
+		["GAVIOTA", "GAVIOTA"],
+		
+		["CIELO", "CIELO"],
+		["CHOCOLATE", "2OKOLATE"],
+		["ARENA", "ARENA"],
+		["BUZO", "BUZO"],
+		["PALA", "PALA"],
+		["ABEJA", "ABEJA"],
+		["HIELO", "HIELO"],		
+		["BOTELLA", "BOTE3A"],
+		["LAGUNA", "LAGUNA"],
+		["PIÑA", "PIÑA"],
+		
+		["ZAPATO", "ZAPATO"],
+		["PARAGUAS", "PARAGUAS"],
+		["AGUA", "AGUA"],
+		["BALLENA", "BA3ENA"],
+		["CANGREJO", "KANGREJO"],
+		["TECHO", "TE2O"],
+		["LECHE", "LE2E"],
+		["BOYA", "BOYA"],
+		["GORRO", "GORRO"],
+		["MONTAÑA", "MONTAÑA"]
+	]
+}

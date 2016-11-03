@@ -1,0 +1,186 @@
+{
+	texts:
+	[
+		{
+			audio:"lapalmeraalta",
+			title: "la palmera alta",
+			ok: "alta",
+			wrong: ["alto", "altas"]
+		},
+		{
+			audio:"elbarcorojo",
+			title: "el barco rojo",
+			ok: "el",
+			wrong: ["la", "los"]
+		},
+		{
+			audio:"uncangrejodivertido",
+			title: "un cangrejo divertido",
+			ok: "divertido",
+			wrong: ["divertida", "divertidos"]
+		},
+		{
+			audio:"loscastillosgrandes",
+			title: "Los castillos grandes",
+			ok: "castillos",
+			wrong: ["castillo", "casa"]
+		},
+		{
+			audio:"elsolamarillo",
+			title: "el sol amarillo",
+			ok: "el",
+			wrong: ["la", "los"]
+		},
+		{
+			audio:"unasestrellasbrillantes",
+			title: "unas estrellas brillantes",
+			ok: "unas",
+			wrong: ["una", "unos"]
+		}
+		{
+			audio:"lamochilapequeña",
+			title: "la mochila pequeña",
+			ok: "pequeña",
+			wrong: ["pequeño", "pequeñas"]
+		},
+		{
+			audio:"losperrosbravos",
+			title: "los perros bravos",
+			ok: "perros",
+			wrong: ["perras", "perro"]
+		},
+		{
+			audio:"lostechosrojos",
+			title: "los techos rojos",
+			ok: "los",
+			wrong: ["la", "el"]
+		},
+		{
+			audio:"unallaveescondida",
+			title: "una llave escondida",
+			ok: "escondida",
+			wrong: ["escondido",  "escondidas"]
+		},
+		{
+			audio:"elcafecaliente",
+			title: "el café caliente",
+			ok: "caliente",
+			wrong: ["calientes", "rica"]
+		},
+		{
+			audio:"undelfinsaltarin",
+			title: "un delfin saltarin",
+			ok: "saltarin",
+			wrong: ["saltarina", "saltarines"]
+		},
+		{
+			audio:"elflotadorgrande",
+			title: "el flotador grande",
+			ok: "el",
+			wrong: ["la", "las"]
+		},
+		{
+			audio:"lapalagris",
+			title: "la pala gris",
+			ok: "gris",
+			wrong: ["rojo", "grises"]
+		},
+		{
+			audio:"unastortugasperezosas",
+			title: "unas tortugas perezosas",
+			ok: "perezosas",
+			wrong: ["perezosa", "perezoso"]
+		},
+		{
+			audio:"lasavesvoladoras",
+			title: "las aves voladoras",
+			ok: "aves",
+			wrong: ["ave", "pajaros"]
+		},
+		{
+			audio:"unospecescoloridos",
+			title: "unos peces coloridos",
+			ok: "peces",
+			wrong: ["pez", "ballenas"]
+		},
+		{
+			audio:"unpulpotriste",
+			title: "un pulpo triste",
+			ok: "triste",
+			wrong: ["alegres", "tristes"]
+		},
+		{
+			audio:"elgatonegro",
+			title: "el gato negro",
+			ok: "gato",
+			wrong: ["gatos", "gata"]
+		},
+		{
+			audio:"elmarazul",
+			title: "el mar azul",
+			ok: "azul",
+			wrong: ["verdes", "azules"]
+		},	
+		{
+			audio:"laniñaalegre",
+			title: "la niña alegre",
+			ok: "alegre",
+			wrong: ["alegres", "contento"]
+		},
+		{
+			audio:"unapelotaverde",
+			title: "una pelota verde",
+			ok: "una",
+			wrong: ["un", "unos"]
+		},
+		{
+			audio:"lasfocasjuguetonas",
+			title: "Las focas juguetonas ",
+			ok: "focas",
+			wrong: ["perro", "estrella"]
+		},
+		{
+			audio:"unaexploradorafuerte",
+			title: "una exploradora fuerte",
+			ok: "una",
+			wrong: ["un", "unas"]
+		},
+		{
+			audio:"elsombreromojado",
+			title: "el sombrero mojado",
+			ok: "mojado",
+			wrong: ["mojadas", "mojada"]
+		},
+		{
+			audio:"laardillaasustada",
+			title: "la ardilla asustada",
+			ok: "la",
+			wrong: ["el", "las"]
+		},
+		{
+			audio:"unpiratabueno",
+			title: "un pirata bueno",
+			ok: "un",
+			wrong: ["una", "unas"]
+		},
+		{
+			audio:"unassombrillasmoradas",
+			title: "unas sombrillas moradas",
+			ok: "moradas",
+			wrong: ["morado", "morados"]
+		},
+		{
+			audio:"untiburongigante",
+			title: "un tiburón gigante",
+			ok: "un",
+			wrong: ["unos", "unas"]
+		},
+		{
+			audio:"losmarineroscontentos",
+			title: "los marineros contentos",
+			ok: "marineros",
+			wrong: ["marinero", "marinera"]
+		}
+
+	]
+}
