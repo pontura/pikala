@@ -8,7 +8,8 @@ public class AvatarCustomizator : MonoBehaviour {
     {
         HATS,
         GLASSES,
-        BODY
+        BODY,
+        SPECIAL
     }
 
     public string hats;

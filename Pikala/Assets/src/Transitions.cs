@@ -42,7 +42,8 @@ public class Transitions : MonoBehaviour {
         while (i < 1)
         {
             i += Time.deltaTime * speed;
-            image.fillAmount = i;
+            if(!showMap)
+                image.fillAmount = i;
             yield return new WaitForEndOfFrame();
         }
         wheel.SetActive(true);
@@ -74,7 +75,8 @@ public class Transitions : MonoBehaviour {
         while (i > 0)
         {
             i -= Time.deltaTime * speed;
-            image.fillAmount = i;
+            if (!showMap)
+                image.fillAmount = i;
             yield return new WaitForEndOfFrame();
         }
         panel.SetActive(false);

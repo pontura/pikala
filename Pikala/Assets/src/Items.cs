@@ -4,9 +4,17 @@ using System.Collections.Generic;
 using System;
 
 public class Items : MonoBehaviour {
+    
+    public int unlockedItems_1;
+    public int unlockedItems_2;
+    public int unlockedItems_3;
 
-    public int unlockedItems;
     public List<Inventory> allItems;
+
+    public List<Inventory> items_1;
+    public List<Inventory> items_2;
+    public List<Inventory> items_3;
+
 
     private int DefaultUnlockedItems = 3;
 
@@ -21,6 +29,7 @@ public class Items : MonoBehaviour {
     public Data[] body;
     public Data[] hats;
     public Data[] glasses;
+    public Data[] specials;
 
     [Serializable]
     public class Data
@@ -33,7 +42,9 @@ public class Items : MonoBehaviour {
     {
         Events.WonItem += WonItem;
         Events.ResetApp += ResetApp;
-        unlockedItems = PlayerPrefs.GetInt("unlockedItems", DefaultUnlockedItems);
+        unlockedItems_1 = PlayerPrefs.GetInt("unlockedItems_1", 0);
+        unlockedItems_2 = PlayerPrefs.GetInt("unlockedItems_2", 0);
+        unlockedItems_3 = PlayerPrefs.GetInt("unlockedItems_3", 0);
         SetLocks();
     }
     void OnDestroy()
@@ -43,22 +54,48 @@ public class Items : MonoBehaviour {
     }
     void ResetApp()
     {
-        unlockedItems = DefaultUnlockedItems;
-        unlockedItems = PlayerPrefs.GetInt("unlockedItems", unlockedItems);
+        PlayerPrefs.SetInt("unlockedItems_1", 0);
+        PlayerPrefs.SetInt("unlockedItems_2", 0);
+        PlayerPrefs.SetInt("unlockedItems_3", 0);
+        unlockedItems_1 = 0;
+        unlockedItems_2 = 0;
+        unlockedItems_3 = 0;
         SetLocks();
     }
-    void WonItem()
+    void WonItem(int routeID)
     {
-        unlockedItems++;
-        PlayerPrefs.SetInt("unlockedItems", unlockedItems);
+        switch(routeID)
+        {
+            case 1: unlockedItems_1++; PlayerPrefs.SetInt("unlockedItems_1", unlockedItems_1); break;
+            case 2: unlockedItems_2++; PlayerPrefs.SetInt("unlockedItems_2", unlockedItems_2);  break;
+            case 3: unlockedItems_3++; PlayerPrefs.SetInt("unlockedItems_3", unlockedItems_3);  break;
+        }
         SetLocks();
     }
     void SetLocks()
     {
         int id = 0;
-        foreach (Inventory data in allItems)
+        foreach (Inventory data in items_1)
         {
-            if (id < unlockedItems)
+            if (id < unlockedItems_1)
+                GetItemData(data.partType, data.id).locked = false;
+            else
+                GetItemData(data.partType, data.id).locked = true;
+            id++;
+        }
+        id = 0;
+        foreach (Inventory data in items_2)
+        {
+            if (id < unlockedItems_2)
+                GetItemData(data.partType, data.id).locked = false;
+            else
+                GetItemData(data.partType, data.id).locked = true;
+            id++;
+        }
+        id = 0;
+        foreach (Inventory data in items_3)
+        {
+            if (id < unlockedItems_3)
                 GetItemData(data.partType, data.id).locked = false;
             else
                 GetItemData(data.partType, data.id).locked = true;
@@ -76,9 +113,12 @@ public class Items : MonoBehaviour {
             case AvatarCustomizator.partsType.HATS: 
                 arr = hats; 
                 break;
-            default:
-                 arr = glasses; 
+            case AvatarCustomizator.partsType.GLASSES:
+                arr = glasses; 
                  break;
+            default:
+                arr = specials;
+                break;
         }
         foreach (Data data in arr)
         {

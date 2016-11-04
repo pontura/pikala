@@ -48,6 +48,6 @@ public static class Events {
     public static System.Action<string> OnGotWord = delegate { };
     public static System.Action<GameData.types> OnOkWord = delegate { };
 
-    public static System.Action WonItem = delegate { };
+    public static System.Action<int> WonItem = delegate { };
     
 }
