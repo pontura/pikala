@@ -41,6 +41,24 @@ public class TextsFrogger : Texts {
 
         return activeRoute[Data.Instance.levelsManager.frogger];
     }
+    public List<Vuelta> GetVuelta()
+    {
+        List<Vuelta> activeRoute = vueltas1;
+        switch (Data.Instance.routes.routeID)
+        {
+            case 2:
+                activeRoute = vueltas2;
+                break;
+            case 3:
+                activeRoute = vueltas3;
+                break;
+        }
+
+        if (Data.Instance.levelsManager.frogger > activeRoute.Count - 1)
+            Data.Instance.levelsManager.frogger = 0;
+
+        return activeRoute;
+    }
     public override void LoadDataMinigames(string json_data)
     {        
         JSONNode Json = SimpleJSON.JSON.Parse(json_data);

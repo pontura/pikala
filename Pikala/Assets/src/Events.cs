@@ -18,6 +18,7 @@ public static class Events {
     public static System.Action<string> OnVoiceSay = delegate { };
     public static System.Action OnTutorialReady = delegate { };
     public static System.Action OnSayCorrectWord = delegate { };
+    public static System.Action OnSayCorrectWord_with_beep = delegate { };
     public static System.Action<string, float> OnVoiceSayFromList = delegate { };
 
     public static System.Action<AvatarCustomizator.partsType, string, int> OnAvatarChangeCloth = delegate { };
@@ -31,6 +32,9 @@ public static class Events {
     public static System.Action<int> RutaSelected = delegate { };
 
     public static System.Action<GameData.types, int> OnAddWordToList = delegate { };
+    public static System.Action<GameData.types, string> OnAddFinalWordToList = delegate { };
+    public static System.Action<string> OnAddWrongWord = delegate { };
+    
 
     public static System.Action OnChangeLane = delegate { };
     public static System.Action OnGameReady = delegate { };

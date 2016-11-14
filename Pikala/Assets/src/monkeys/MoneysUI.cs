@@ -24,6 +24,7 @@ public class MoneysUI : MonoBehaviour {
     {
         picturesUI.gameObject.SetActive(false);
         Events.OnSayCorrectWord += OnSayCorrectWord;
+        Events.OnSayCorrectWord_with_beep += OnSayCorrectWord_with_beep;
         EventsMonkey.OnGotBanana += OnGotBanana;
         Events.OnTutorialReady += OnTutorialReady;
 
@@ -62,6 +63,7 @@ public class MoneysUI : MonoBehaviour {
     {
         Events.OnTutorialReady -= OnTutorialReady;
         Events.OnSayCorrectWord -= OnSayCorrectWord;
+        Events.OnSayCorrectWord_with_beep -= OnSayCorrectWord_with_beep;
         EventsMonkey.OnGotBanana -= OnGotBanana;
     }
     void OnTutorialReady()
@@ -97,6 +99,7 @@ public class MoneysUI : MonoBehaviour {
             ui.GetComponent<Animation>().Play("wrong");
             Events.OnSoundFX("mistakeWord");
             commitError = true;
+            Events.OnAddWrongWord(title);
         }
         else
         {
@@ -109,6 +112,10 @@ public class MoneysUI : MonoBehaviour {
             Events.OnVoiceSayFromList("felicitaciones", 0.8f);
             Invoke("DiceFrase", 2.2f);
         }
+    }
+    void OnSayCorrectWord_with_beep()
+    {
+        Events.OnVoiceSay("palabras/" + vuelta.audio + "BEEP");
     }
     void OnSayCorrectWord()
     {

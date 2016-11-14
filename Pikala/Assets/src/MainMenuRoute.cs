@@ -8,7 +8,7 @@ public class MainMenuRoute : MonoBehaviour {
 
     public void Init(int activeID, bool perfect)
     {
-        print("MAP : Init  " + activeID + "            perfect: " + perfect);
+       // print("MAP : Init  " + activeID + "            perfect: " + perfect);
         routePoints[activeID].Init(perfect);
     }
 

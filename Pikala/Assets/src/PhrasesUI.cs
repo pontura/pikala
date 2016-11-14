@@ -12,6 +12,6 @@ public class PhrasesUI : MonoBehaviour {
     }
     public void Pressed()
     {
-        Events.OnSayCorrectWord();
+        Events.OnSayCorrectWord_with_beep();
     }
 }

@@ -103,12 +103,14 @@ public class FroggerUI : MonoBehaviour
             StartCoroutine(ResetRoutine);
             anim.Play("wrong");
             Events.OnSoundFX("Splash");
+            Events.OnAddWrongWord(text);
         }
         else
         {
             this.lastWord = text;
             anim.Play("ok");
             Events.OnSoundFX("correctWord");
+            Events.OnAddFinalWordToList(GameData.types.FROGGER, text);
             pictureUI.gameObject.SetActive(true);
             pictureUI.Init(text);
             ResetRoutine = ResetNextWord();

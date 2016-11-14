@@ -28,4 +28,8 @@ public class Tent : MainClass
     {
         Data.Instance.LoadLevel("MainMenu", false);
     }
+    public void Map()
+    {
+        Data.Instance.LoadLevel("Map", false);
+    }
 }

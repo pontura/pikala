@@ -52,20 +52,32 @@ public class VoicesManager : MonoBehaviour
     }
     void OnVoiceSay(string soundName)
     {
-        switch (soundName.ToLower())
+        string audioName = soundName;
+        switch (audioName.ToLower())
         {
             case "palabras/montana":
-                soundName = "palabras/montana"; break;
+                audioName = "palabras/montana"; break;
             case "palabras/niño":
-                soundName = "palabras/nino"; break;
+                audioName = "palabras/nino"; break;
             case "palabras/piña":
-                soundName = "palabras/pina"; break;
+                audioName = "palabras/pina"; break;
+
+            case "palabras/laniñaalegre":
+                audioName = "palabras/laninaalegre"; break;
+            case "palabras/laniñaalegrebeep":
+                audioName = "palabras/laninaalegreBEEP"; break;
+
+            case "palabras/lamochilapequeña":
+                audioName = "palabras/laninaalegre"; break;
+            case "palabras/lamochilapequeñabeep":
+                audioName = "palabras/lamochilapequenaBEEP"; break;
+
         }
 
-        if (soundName == "")
+        if (audioName == "")
             audioSource.Stop();
         else
-            audioSource.PlayOneShot(Resources.Load("SFX/" + soundName) as AudioClip);
-        print("Dice: " + soundName);
+            audioSource.PlayOneShot(Resources.Load("SFX/" + audioName) as AudioClip);
+        print("Dice: " + audioName);
     }
 }

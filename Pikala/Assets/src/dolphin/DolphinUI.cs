@@ -35,7 +35,8 @@ public class DolphinUI : MonoBehaviour
         filledImage.fillAmount = 0;
         okWords = 0;
         Events.OnGotWord += OnGotWord;
-        Events.OnSayCorrectWord += OnSayCorrectWord;        
+        Events.OnSayCorrectWord += OnSayCorrectWord;
+        Events.OnSayCorrectWord_with_beep += OnSayCorrectWord_with_beep;
         Events.OnTutorialReady += OnTutorialReady;
 
         if (!Data.Instance.levelsManager.dolphin_IntroPlayed)
@@ -137,6 +138,7 @@ public class DolphinUI : MonoBehaviour
         Events.OnTutorialReady -= OnTutorialReady;
         Events.OnGotWord -= OnGotWord;
         Events.OnSayCorrectWord -= OnSayCorrectWord;
+        Events.OnSayCorrectWord_with_beep -= OnSayCorrectWord_with_beep;
     }
     void ResetWord()
     {
@@ -221,6 +223,11 @@ public class DolphinUI : MonoBehaviour
             yield return new WaitForSeconds(1);
             GetNextWord();
         }
+    }
+    void OnSayCorrectWord_with_beep()
+    {
+        print("__________OnSayCorrectWord " + toSay.ToLower());
+        Events.OnVoiceSay("palabras/" + toSay.ToLower() + "BEEP");
     }
     void OnSayCorrectWord()
     {

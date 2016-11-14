@@ -187,6 +187,10 @@ public class BridgeGame : MainClass
             StartCoroutine(Jumps());
             return;
         }
+        else
+        {
+            Events.OnAddWrongWord(word);
+        }
         if (totalWordsInGame == word.Length)
         {
             if (wrong)

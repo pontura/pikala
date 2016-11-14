@@ -48,4 +48,9 @@ public class Settings : MonoBehaviour {
     {
         GetComponent<MusicManager>().SwitchMusic();
     }
+    public void Dashboard()
+    {
+        Data.Instance.LoadLevel("Dashboard", false);
+        Close();
+    }
 }
