@@ -95,6 +95,10 @@ public class BridgeUI : MonoBehaviour
             yield return new WaitForSeconds(0.55f);
             string letter = lastWord.Substring(id, 1).ToLower();
             Debug.Log("letter: " + letter);
+            
+            if (letter == "ñ")
+                letter = "enie";
+
             Events.OnSoundFX("letras/" + letter);
             id++;
         }

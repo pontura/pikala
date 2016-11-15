@@ -56,7 +56,10 @@ public class DragManager : MonoBehaviour
                     draggingItem = true;
                     draggedObject = hit.transform.gameObject;
                     print("DICE: " + draggedObject.GetComponent<BridgeItem>().letter.ToLower());
-                    Events.OnVoiceSay("letras/" + draggedObject.GetComponent<BridgeItem>().letter.ToLower());
+                    string letra = draggedObject.GetComponent<BridgeItem>().letter.ToLower();
+                    if (letra == "ñ")
+                        letra = "enie";
+                    Events.OnVoiceSay("letras/" + letra);
 
                     if (draggedObject.GetComponent<BridgeItem>().slotAttached != null)
                         draggedObject.GetComponent<BridgeItem>().slotAttached.EmptyLetters();

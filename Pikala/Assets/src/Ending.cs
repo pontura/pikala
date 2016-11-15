@@ -63,11 +63,14 @@ public class Ending : MainClass {
         }
 	}
     public void DiceRegalo()
-    {
-       
+    {       
         print("Ending: da premio: " + audioName);
         Events.OnSoundFX("premios/" + audioName);
-        Invoke("Continue", 3);
+        Invoke("Tent", 3);
+    }
+    public void Tent()
+    {
+        Data.Instance.LoadLevel("Tent", false);
     }
     public void Continue()
     {
