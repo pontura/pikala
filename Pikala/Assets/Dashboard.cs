@@ -15,6 +15,8 @@ public class Dashboard : MainClass {
     public GameObject off2;
     public GameObject off3;
 
+    public Image progressPerLevel;
+
     void Start () {
         Data.Instance.GetComponent<Settings>().settingsButton.SetActive(false);
         ProgressData data = Data.Instance.GetComponent<ProgressData>();
@@ -34,6 +36,8 @@ public class Dashboard : MainClass {
             off2.SetActive(false);
         if (Data.Instance.GetComponent<Routes>().unlockedRoute >2)
             off3.SetActive(false);
+
+        progressPerLevel.fillAmount = Data.Instance.routes.GetTotalPerfectAmount();
     }
 	void Create(Transform content, List<string> words)
     {

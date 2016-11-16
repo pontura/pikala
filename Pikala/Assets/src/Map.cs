@@ -28,6 +28,13 @@ public class Map : MonoBehaviour {
         int routeID = Data.Instance.routes.routeID;
         int gameID = Data.Instance.routes.gameID;
 
+       if(gameID <= 1)
+        {
+            route1.ResetPlayedPoints();
+            route2.ResetPlayedPoints();
+            route3.ResetPlayedPoints();
+        }
+
         for (int id = 0; id < Data.Instance.routes.route1.Count; id++)
             route1.Init(id, Data.Instance.routes.route1[id].perfect);
 
@@ -38,7 +45,7 @@ public class Map : MonoBehaviour {
             route3.Init(id, Data.Instance.routes.route3[id].perfect);
 
         
-        if (routeID != 0)
+        if (!isMainMenu)
         {
             route1.SetOff();
             route2.SetOff();
@@ -51,6 +58,7 @@ public class Map : MonoBehaviour {
             else
                 route3.SetOn(gameID);
         }
+        
     }
     void OnDestroy()
     {

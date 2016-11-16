@@ -101,5 +101,29 @@ public class Routes : MonoBehaviour {
         routeID = 0;
         gameID = 1;
     }
-
+    public float GetTotalPerfectAmount()
+    {
+        int totalData = 0;
+        int totalPerfect = 0;
+        foreach (GameData data in route1 )
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route2)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route3)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+       // print("totalPerfect: " + totalPerfect + "totalData: " + totalData);
+        return (float)totalPerfect / (float)totalData;
+    }
 }

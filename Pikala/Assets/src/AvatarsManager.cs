@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class AvatarsManager : MonoBehaviour {
 
@@ -7,15 +8,33 @@ public class AvatarsManager : MonoBehaviour {
     public Avatar nena;
     public string initState;
 
-	void Start () {
-        Events.OnAvatarChangeCloth += OnAvatarChangeCloth;
+	void Start () {        
         if (initState == "Idle") Idle();
 
+        Events.OnAvatarChangeCloth += OnAvatarChangeCloth;
         Events.MonkeysShoot += MonkeysShoot;
         Events.MonkeysAiming += MonkeysAiming;
+        Events.AvatarsIdle += AvatarsIdle;
 
         Invoke("Customize", 0.3f);
 	}
+    void AvatarsIdle()
+    {
+        Invoke("AvatarsIdleDelayed", 0.1f);
+    }
+    void AvatarsIdleDelayed()
+    {
+        if (SceneManager.GetActiveScene().name == "Game_Monkey")
+        {
+            nene.BoyMonkeyIdle();
+            nena.GirlMonkeyIdle();
+        }
+        else
+        {
+            nene.BoyIdle();
+            nena.GirlIdle();
+        }
+    }
     void Customize()
     {
         AvatarStyles.Styles neneStyles = Data.Instance.GetComponent<AvatarStyles>().nene;
@@ -64,6 +83,7 @@ public class AvatarsManager : MonoBehaviour {
         Events.MonkeysShoot -= MonkeysShoot;
         Events.MonkeysAiming -= MonkeysAiming;
         Events.OnAvatarChangeCloth -= OnAvatarChangeCloth;
+        Events.AvatarsIdle -= AvatarsIdle;
     }
     bool isMoving;
     void MonkeysAiming(bool _isMoving)

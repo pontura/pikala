@@ -41,6 +41,8 @@ public class GameManager : MainClass
 
         AnimateBananaThrownToSlingshot();
         started = true;
+        GetComponent<Animator>().enabled = false;
+        Events.AvatarsIdle();
     }
     // Update is called once per frame
     void Update()

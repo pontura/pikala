@@ -11,6 +11,7 @@ public static class Events {
     public static System.Action<int> OnRefreshScore = delegate { };
 
     public static System.Action UnlockNextRoute = delegate { };
+    public static System.Action AvatarsIdle = delegate { };
     public static System.Action MonkeysShoot = delegate { };
     public static System.Action<bool> MonkeysAiming = delegate { };
     public static System.Action<string> OnSoundFX = delegate { };
@@ -28,6 +29,7 @@ public static class Events {
     public static System.Action<string> OnSoundFXSecondary = delegate { };
     public static System.Action<GameData.types, bool> OnLevelComplete = delegate { };
 
+    public static System.Action WinDiploma = delegate { };
     public static System.Action OnPerfect = delegate { };
     public static System.Action<int> RutaSelected = delegate { };
 

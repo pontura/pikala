@@ -58,6 +58,8 @@ public class FroggerGame : MainClass {
     void OnTutorialReady()
     {
         GetComponent<FroggerController>().StartGame();
+        GetComponent<Animation>().Stop();
+        Events.AvatarsIdle();
     }
     void AddPanel(FroggerPanel panel)
     {

@@ -37,6 +37,11 @@ public class MainMenuRoutePoint : MonoBehaviour {
         if (imagePlayed != null)
             imagePlayed.enabled = true;
     }
+    public void SetUnPlayed()
+    {
+        if (imagePlayed != null)
+            imagePlayed.enabled = false;
+    }
     public void SetOn()
     {
         GetComponent<Animator>().enabled = true;

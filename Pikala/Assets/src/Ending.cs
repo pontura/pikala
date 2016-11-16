@@ -59,6 +59,7 @@ public class Ending : MainClass {
         }
         else
         {
+            Events.WinDiploma();
             Invoke("Continue", 3);
         }
 	}
