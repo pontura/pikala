@@ -165,6 +165,9 @@ public class FroggerController : MonoBehaviour {
     {
         if (!commitError)
             Events.OnPerfect();
+        else
+            Events.OnGood();
+
         Events.OnLevelComplete(GameData.types.FROGGER, commitError);
     }
     void GetNewSnap()

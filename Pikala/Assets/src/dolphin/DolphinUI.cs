@@ -241,6 +241,8 @@ public class DolphinUI : MonoBehaviour
     {
         if (!commitError)
             Events.OnPerfect();
+        else
+            Events.OnGood();
         Events.OnLevelComplete(GameData.types.DOLPHIN, false);
     }
     IEnumerator ResetNextWord()

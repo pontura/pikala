@@ -68,7 +68,7 @@ public class VoicesManager : MonoBehaviour
                 audioName = "palabras/laninaalegreBEEP"; break;
 
             case "palabras/lamochilapequeña":
-                audioName = "palabras/laninaalegre"; break;
+                audioName = "palabras/lamochilapequena"; break;
             case "palabras/lamochilapequeñabeep":
                 audioName = "palabras/lamochilapequenaBEEP"; break;
 

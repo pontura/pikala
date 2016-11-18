@@ -31,6 +31,7 @@ public static class Events {
 
     public static System.Action WinDiploma = delegate { };
     public static System.Action OnPerfect = delegate { };
+    public static System.Action OnGood = delegate { };
     public static System.Action<int> RutaSelected = delegate { };
 
     public static System.Action<GameData.types, int> OnAddWordToList = delegate { };

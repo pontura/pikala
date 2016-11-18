@@ -66,10 +66,9 @@ public class Routes : MonoBehaviour {
     }
     public void SetPerfect(bool isPerfect)
     {
-        print("SetPerfect " + isPerfect);
         if (isPerfect)
         {
-            print("New Perfect:   " + "level_" + routeID + "_" + gameID);
+          //  print("New Perfect:   " + "level_" + routeID + "_" + gameID);
             PlayerPrefs.SetInt("level_" + routeID + "_" + gameID, 1);
             GetActualGame().perfect = isPerfect;
         }

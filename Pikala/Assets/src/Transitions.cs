@@ -49,7 +49,8 @@ public class Transitions : MonoBehaviour {
         wheel.SetActive(true);
         if (showMap)
         {
-            musicManager.OnVolumeChanged(0.07f);
+            if(musicManager.volume > 0)
+                musicManager.OnVolumeChanged(0.07f);
             Events.OnShowMap(true);
         }
 
@@ -69,7 +70,8 @@ public class Transitions : MonoBehaviour {
         if (showMap)
         {
             Events.OnShowMap(false);
-            musicManager.OnVolumeChanged(0.2f);
+            if (musicManager.volume > 0)
+                musicManager.OnVolumeChanged(0.2f);
         }
         float i = 1;
         while (i > 0)

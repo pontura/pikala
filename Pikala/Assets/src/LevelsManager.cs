@@ -20,7 +20,12 @@ public class LevelsManager : MonoBehaviour {
     {
         monkeys = PlayerPrefs.GetInt("monkeys", 0);
         frogger = PlayerPrefs.GetInt("frogger", 0);
-        bridges = PlayerPrefs.GetInt("bridges", 0); 
+        bridges = PlayerPrefs.GetInt("bridges", 0);
+
+        if (PlayerPrefs.GetInt("frogger_IntroPlayed") == 1) frogger_IntroPlayed = true;
+        if (PlayerPrefs.GetInt("monkey_IntroPlayed") == 1)  monkey_IntroPlayed = true;
+        if (PlayerPrefs.GetInt("bridge_IntroPlayed") == 1)  bridge_IntroPlayed = true;
+        
 
         Events.OnLevelComplete += OnLevelComplete;
         Events.OnOkWord += OnOkWord;
@@ -64,19 +69,22 @@ public class LevelsManager : MonoBehaviour {
                 monkeys++;
                 if (monkeys >= GetComponent<TextsMonkeys>().vueltas.Count)
                     monkeys = 0;
-                PlayerPrefs.SetInt("monkeys", monkeys); 
+                PlayerPrefs.SetInt("monkeys", monkeys);
+                PlayerPrefs.SetInt("monkey_IntroPlayed", 1);
                 break;
             case GameData.types.FROGGER:
                // frogger++;
                // if (frogger >= GetComponent<TextsFrogger>().vueltas.Count)
                  //   frogger = 0;
                 PlayerPrefs.SetInt("frogger", frogger);
+                PlayerPrefs.SetInt("frogger_IntroPlayed", 1);
                 break;
             case GameData.types.BRIDGE: 
                 bridges++;
                 if (bridges >= GetComponent<TextsBridge>().vueltas.Count)
                     bridges = 0;
-                PlayerPrefs.SetInt("bridges", bridges); 
+                PlayerPrefs.SetInt("bridges", bridges);
+                PlayerPrefs.SetInt("bridge_IntroPlayed", 1);
                 break;
             case GameData.types.DOLPHIN: 
                 break;

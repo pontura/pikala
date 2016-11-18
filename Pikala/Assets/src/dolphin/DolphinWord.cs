@@ -25,7 +25,6 @@ public class DolphinWord : DolphinObject {
         renderer.sortingLayerName = "laneOver";
         if (settings.word == "")
         {
-            print("VACIOA");
             Invoke("Pool", 0.1f);
         }
     }

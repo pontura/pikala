@@ -55,7 +55,7 @@ public class DolphinsLevelManager : MonoBehaviour {
         int rand = UnityEngine.Random.Range(0, DolphinGame.Instance.areasManager.areaSets[activeGroupId].levels.Length);
         activeLevel = DolphinGame.Instance.areasManager.areaSets[activeGroupId].levels[rand];
 
-        print("nextLevelDistance " + nextLevelDistance + " distance " + distance + " activeGroupId: " + activeGroupId + " activeLevel.length " + activeLevel.length + "  activeLevel.NAME " + activeLevel.name);
+       // print("nextLevelDistance " + nextLevelDistance + " distance " + distance + " activeGroupId: " + activeGroupId + " activeLevel.length " + activeLevel.length + "  activeLevel.NAME " + activeLevel.name);
         LoadLevelAssets(nextLevelDistance);
         
         nextLevelDistance += activeLevel.length;
@@ -75,55 +75,47 @@ public class DolphinsLevelManager : MonoBehaviour {
             foreach (Transform t in allObjectsInLane)
             {
                 DolphinObjectSettings settings = new DolphinObjectSettings();
-               
-
                 DolphinObject obj = null;
-                //switch (t.gameObject.name)
-                //{
-                //    case "word":
-                //        obj = DolphinWord;
-                //        break;
-                //    case "barrel":
-                //        obj = DolphinBarrel;
-                //        break;
-                //}
+
                 switch (t.gameObject.name)
                 {
                     case "word":
                         int rand = UnityEngine.Random.Range(0, 100);                       
                         if (ui.state == DolphinUI.states.PLAYING)
                         {
-                            if (rand < 30)
-                            {
-                                switch (Data.Instance.routes.routeID)
-                                {
-                                    case 1:
-                                        obj = DolphinBarrel; break;
-                                    case 2:
-                                        obj = DolphinFoca; break;
-                                    default:
-                                        if (UnityEngine.Random.Range(0, 100) < 50)
-                                            obj = DolphinRock1;
-                                        else
-                                            obj = DolphinRock2;
-                                        break;
-                                }
-                            }
-                            else
+                            if (rand < 35 && Time.time > lastTimeCorrectWord + 4)
                             {
                                 obj = DolphinWord;
-                                if (rand < 60 && Time.time > lastTimeCorrectWord +4)
+                                settings.word = ui.ok.ToUpper();
+                                settings.isCorrect = true;
+                                lastTimeCorrectWord = Time.time;
+                            }
+                            else 
+                            {
+                                string wrongWord = GetWrongWord();
+                                if (wrongWord != "")
                                 {
-                                    settings.word = ui.ok.ToUpper();
-                                    settings.isCorrect = true;
-                                    lastTimeCorrectWord = Time.time;
+                                    obj = DolphinWord;
+                                    settings.word = GetWrongWord().ToUpper();
+                                    settings.isCorrect = false;
+                                    settings.speed = 0;
                                 }
                                 else
                                 {
-                                    settings.word = GetRandomWrongWord().ToUpper();
-                                    settings.isCorrect = false;
+                                    switch (Data.Instance.routes.routeID)
+                                    {
+                                        case 1:
+                                            obj = DolphinBarrel; break;
+                                        case 2:
+                                            obj = DolphinFoca; break;
+                                        default:
+                                            if (UnityEngine.Random.Range(0, 100) < 50)
+                                                obj = DolphinRock1;
+                                            else
+                                                obj = DolphinRock2;
+                                            break;
+                                    }
                                 }
-                                settings.speed = 0;
                             }
                         }
                         break;
@@ -135,21 +127,23 @@ public class DolphinsLevelManager : MonoBehaviour {
                     lanes.AddObjectToLane(newObj, lane.id, (int)(nextLevelDistance + t.transform.localPosition.x), settings);
                 }
             }
-        }
-
-        
+        }        
     }
 	public void LoadNext () {
 	    
 	}
-    string GetRandomWrongWord()
-    {
-       // TextsMonkeys.Vuelta vuelta = Data.Instance.GetComponent<TextsMonkeys>().vueltas[UnityEngine.Random.Range(0, Data.Instance.GetComponent<TextsMonkeys>().vueltas.Count - 1)];
-
+    string lastWrongWord = "";
+    string GetWrongWord()
+    {       
         string wrongWord = ui.wrongWords[UnityEngine.Random.Range(0, ui.wrongWords.Count)];
-        if (wrongWord != ui.ok)
-            return wrongWord;
+        if (wrongWord == ui.ok)
+            return GetWrongWord();
+        if (lastWrongWord == wrongWord)
+            return "";
         else
-            return GetRandomWrongWord();
+        {
+            lastWrongWord = wrongWord;
+            return wrongWord;
+        }
     }
 }

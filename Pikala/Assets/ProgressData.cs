@@ -32,7 +32,7 @@ public class ProgressData : MonoBehaviour {
             for (int b = 0; b < 40; b++)
             {
                 string wordIdName = "well_" + (int)(a + 1) + "_" + (int)(b + 1);
-                print(wordIdName);
+               // print(wordIdName);
                 string word = PlayerPrefs.GetString(wordIdName, "");
                 if (word != "")
                     AddWordTo(a + 1, word);

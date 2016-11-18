@@ -29,6 +29,7 @@ public class BridgeUI : MonoBehaviour
 
         if (!Data.Instance.levelsManager.bridge_IntroPlayed)
         {
+            Data.Instance.levelsManager.bridges = 1;
             //pictureUI.gameObject.SetActive(false);
             Data.Instance.levelsManager.bridge_IntroPlayed = true;
             GetComponent<Intro>().Init();

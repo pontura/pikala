@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
     {
         this.volume = volumeReal;
        // volume = PlayerPrefs.GetFloat("SFXVol", 0.2f);
+
         OnVolumeChanged(volume);
         Events.OnMusic += OnMusic;
     }

@@ -154,6 +154,8 @@ public class MoneysUI : MonoBehaviour {
 
         if(!commitError)
             Events.OnPerfect();
+        else
+            Events.OnGood();
 
         Events.OnLevelComplete(GameData.types.MONKEY, commitError);
     }

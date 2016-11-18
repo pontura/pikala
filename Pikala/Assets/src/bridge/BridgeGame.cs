@@ -56,7 +56,7 @@ public class BridgeGame : MainClass
                 addLetters = 2; break;
         }
         AddNewScene();
-        Restart();
+        Invoke("Restart", 0.1f);
 
         GetComponent<DragManager>().enabled = false;
         Events.OnTutorialReady += OnTutorialReady;
@@ -270,6 +270,8 @@ public class BridgeGame : MainClass
     {
         if (!commitError)
             Events.OnPerfect();
+        else
+            Events.OnGood();
         Events.OnLevelComplete(GameData.types.BRIDGE, commitError);
     }
     void Update()
