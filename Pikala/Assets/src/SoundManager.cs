@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
 
         Events.OnSoundFX += OnSoundFX;
         Events.OnSoundFXSecondary += OnSoundFXSecondary;
+        Events.OnButtonClick += OnButtonClick;
     }
     void OnHeroDie()
     {
@@ -76,5 +77,10 @@ public class SoundManager : MonoBehaviour
         }
         audioSource2.clip = Resources.Load("SFX/" + soundName) as AudioClip;
         audioSource2.Play();
+    }
+    void OnButtonClick()
+    {
+        if(Data.Instance.GetComponent<MusicManager>().volume>0)
+            OnSoundFX("btnClick");
     }
 }

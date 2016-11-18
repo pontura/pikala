@@ -12,8 +12,7 @@ public class MainMenu : MainClass {
         {
             Data.Instance.levelsManager.introPlayed = true;            
         }else
-        {
-            
+        {            
             tutorialAnim.Stop();
             tutorialAnim.enabled = false;
             tutorial.SetActive(false);
@@ -30,5 +29,10 @@ public class MainMenu : MainClass {
     public void Map()
     {
         Data.Instance.LoadLevel("Map", false);
+    }
+    public void ReplayTutorial()
+    {
+        Data.Instance.levelsManager.introPlayed = false;
+        Data.Instance.LoadLevel("MainMenu", false);
     }
 }
