@@ -7,6 +7,7 @@ public class Diploma : MonoBehaviour
 {
     public int diploma;
     public GameObject panel;
+    public Texture2D tex;
 
     void Start()
     {
@@ -19,21 +20,24 @@ public class Diploma : MonoBehaviour
     {
         Events.WinDiploma -= WinDiploma;
     }
+    void OnEnable()
+    {
+        WinDiploma();
+    }
     void WinDiploma()
     {
         if(diploma == 0)
         PlayerPrefs.SetInt("diploma", 1);
         diploma = 1;
         panel.SetActive(true);
-        OnShare();
+        Invoke("OnShare", 2);
     }
     void OnShare()
     {
         print("OnEnable");
 
-        int width = Screen.width;
-        int height = Screen.height;
-        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+        int width = 2047;
+        int height = 1150;
 
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply();

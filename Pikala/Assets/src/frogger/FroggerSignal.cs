@@ -15,9 +15,10 @@ public class FroggerSignal : MonoBehaviour {
         GetComponent<Animation>().Play("Idle");
         GetComponent<Animation>()["Idle"].normalizedTime = Random.Range(0, 10) / 10;
         this.word = word;
-        this.isOk = isOk;
-        field.text = word;
-	}
+        this.isOk = isOk;        
+        Colorize();
+
+    }
     public void Break()
     {
         GetComponent<Animation>().Play("Break");
@@ -27,10 +28,17 @@ public class FroggerSignal : MonoBehaviour {
     {
         if (!GetComponent<Animation>()) return;
         GetComponent<Animation>().Play("Idle");
-        field.text = word;
+        Colorize();
     }
     public void CatchWord()
     {
         field.text = "";
+    }
+    void Colorize()
+    {
+        string terminacion = word.Substring(word.Length - 2);
+        string firstPart = word.Substring(0, word.Length - 2);
+        field.richText = true;
+        field.text = firstPart + "<color=YELLOW>" + terminacion + "</color>";
     }
 }

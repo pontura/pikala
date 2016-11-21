@@ -10,16 +10,18 @@ public class Ending : MainClass {
     public GameObject readySignal;
 
 	void Start () {
+
         readySignal.SetActive(false);
         int routeID = Data.Instance.routes.routeID;
         int count;
+
         switch(routeID)
         {
             case 1:
                 unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems_1;
                 if(unlockedItems>=3)
                 {
-                    readySignal.SetActive(true);
+                    Ready();
                     return;
                 }
                 count = Data.Instance.GetComponent<Items>().items_1.Count;
@@ -29,7 +31,7 @@ public class Ending : MainClass {
                 unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems_2;
                 if (unlockedItems >= 3)
                 {
-                    readySignal.SetActive(true);
+                    Ready();
                     return;
                 }
                 count = Data.Instance.GetComponent<Items>().items_2.Count;
@@ -39,7 +41,7 @@ public class Ending : MainClass {
                 unlockedItems = Data.Instance.GetComponent<Items>().unlockedItems_3;
                 if (unlockedItems >= 3)
                 {
-                    readySignal.SetActive(true);
+                    Ready();
                     return;
                 }
                 count = Data.Instance.GetComponent<Items>().items_3.Count;
@@ -58,8 +60,7 @@ public class Ending : MainClass {
             Invoke("DiceRegalo", 10);
         }
         else
-        {
-            Events.WinDiploma();
+        {            
             Invoke("Continue", 3);
         }
 	}
@@ -76,5 +77,13 @@ public class Ending : MainClass {
     public void Continue()
     {
         Data.Instance.LoadLevel("Map", false);
+    }
+    void Ready()
+    {
+        readySignal.SetActive(true);
+        Events.WinDiploma();
+        GetComponent<Animation>().Stop();
+        GetComponent<Animation>().enabled = false;
+        GetComponent<AvatarsManager>().Idle();
     }
 }
