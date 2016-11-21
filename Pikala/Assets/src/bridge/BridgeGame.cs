@@ -31,6 +31,7 @@ public class BridgeGame : MainClass
     public int addLetters;
 
     public string[] letters;
+    public string palabra;
     public string word;
     public List<string> wordsToUse;
     private AvatarsManager avatarsManager;
@@ -81,6 +82,7 @@ public class BridgeGame : MainClass
         int vueltaID = Data.Instance.levelsManager.bridges;
         TextsBridge.Vuelta vuelta = Data.Instance.GetComponent<TextsBridge>().vueltas[vueltaID];
         word = vuelta.ok;
+        palabra = vuelta.palabra;
         avatarsManager.Walk();
         Delayed();
     }
@@ -189,7 +191,7 @@ public class BridgeGame : MainClass
         }
         else
         {
-            Events.OnAddWrongWord(word);
+            Events.OnAddWrongWord(palabra);
         }
         if (totalWordsInGame == word.Length)
         {
