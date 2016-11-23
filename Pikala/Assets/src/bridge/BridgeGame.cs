@@ -83,6 +83,7 @@ public class BridgeGame : MainClass
         TextsBridge.Vuelta vuelta = Data.Instance.GetComponent<TextsBridge>().vueltas[vueltaID];
         word = vuelta.ok;
         palabra = vuelta.palabra;
+        print(word + " " + palabra);
         avatarsManager.Walk();
         Delayed();
     }
