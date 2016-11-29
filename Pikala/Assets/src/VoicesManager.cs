@@ -3,6 +3,7 @@ using System.Collections;
 
 public class VoicesManager : MonoBehaviour
 {
+    public AudioClip[] timeNoPlaying;
     public AudioClip[] felicitaciones;
     public AudioSource audioSource;
     public float volume;
@@ -38,10 +39,11 @@ public class VoicesManager : MonoBehaviour
             switch (listName)
             {
                 case "felicitaciones": arr = felicitaciones; break;
+                case "timeNoPlaying": arr = timeNoPlaying; break;
             }
             if (arr != null)
             {
-                sayInDelay = felicitaciones[Random.Range(0, felicitaciones.Length)];
+                sayInDelay = arr[Random.Range(0, arr.Length)];
                 Invoke("SayInDelay", delay);
             }
         }
@@ -79,5 +81,11 @@ public class VoicesManager : MonoBehaviour
         else
             audioSource.PlayOneShot(Resources.Load("SFX/" + audioName) as AudioClip);
         print("Dice: " + audioName);
+    }
+    void OnSpecialVoice(string soundName)
+    {
+        string audioName = soundName;
+        audioSource.clip = (Resources.Load("SFX/" + audioName) as AudioClip);
+        audioSource.Play();
     }
 }

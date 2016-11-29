@@ -158,6 +158,7 @@ public class BridgeGame : MainClass
     }
     void StartGame()
     {
+        Events.ResetTimeToSayNotPlaying();
         state = states.PLAYING;
         avatarsManager.Idle();
     }
@@ -271,6 +272,7 @@ public class BridgeGame : MainClass
     }
     void LevelComplete()
     {
+
         if (!commitError)
             Events.OnPerfect();
         else

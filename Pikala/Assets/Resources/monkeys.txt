@@ -69,7 +69,7 @@
 		},
 		{
 			audio:"undelfinsaltarin",
-			title: "un delfin saltarin",
+			title: "un delfín saltarín",
 			ok: "saltarin",
 			wrong: ["saltarina", "saltarines"]
 		},

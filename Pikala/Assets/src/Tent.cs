@@ -7,9 +7,15 @@ public class Tent : MainClass
     public SpecialItemInTent special2;
     public SpecialItemInTent special3;
 
+    public SpecialItemInTent diploma;
+
     void Start () {
 
         Events.OnMusic("carefree");
+
+        if (Data.Instance.GetComponent<Diploma>().diploma == 0)
+            diploma.Init(false);
+        else diploma.Init(true);
 
         if (Data.Instance.GetComponent<Items>().unlockedItems_1 > 2)
             special1.Init(true);

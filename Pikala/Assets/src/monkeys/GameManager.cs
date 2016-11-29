@@ -112,6 +112,7 @@ public class GameManager : MainClass
 
     void AnimateBananaThrownToSlingshot()
     {
+        Events.ResetTimeToSayNotPlaying();
         GameObject newBananaThrown = Instantiate(bird);
         newBananaThrown.transform.localPosition = new Vector3(0, 0, -1);
         Bananas.Add(newBananaThrown);

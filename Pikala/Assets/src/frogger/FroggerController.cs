@@ -132,6 +132,7 @@ public class FroggerController : MonoBehaviour {
         state = states.JUMPING;
         activePanelID++;
         Events.OnJump();
+        Events.ResetTimeToSayNotPlaying();
 
         cam.SetX(activePanelID * distance);
         GetNewSnap();

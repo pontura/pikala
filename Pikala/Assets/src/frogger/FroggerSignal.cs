@@ -36,6 +36,7 @@ public class FroggerSignal : MonoBehaviour {
     }
     void Colorize()
     {
+        if (word == null || word.Length<1) return;
         string terminacion = word.Substring(word.Length - 2);
         string firstPart = word.Substring(0, word.Length - 2);
         field.richText = true;

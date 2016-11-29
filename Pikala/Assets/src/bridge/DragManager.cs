@@ -60,6 +60,7 @@ public class DragManager : MonoBehaviour
                     if (letra == "ñ")
                         letra = "enie";
                     Events.OnVoiceSay("letras/" + letra);
+                    Events.ResetTimeToSayNotPlaying();
 
                     if (draggedObject.GetComponent<BridgeItem>().slotAttached != null)
                         draggedObject.GetComponent<BridgeItem>().slotAttached.EmptyLetters();

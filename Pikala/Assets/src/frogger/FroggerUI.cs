@@ -120,13 +120,18 @@ public class FroggerUI : MonoBehaviour
     void OnSayCorrectWord()
     {
         if (lastWord != "")
-        Events.OnVoiceSay("palabras/" + lastWord);
+        Events.OnVoiceSay("terminaciones/" + ok_terminacion);
+    }
+    void OnSayCorrectWordReal()
+    {
+        if (lastWord != "")
+            Events.OnVoiceSay("palabras/" + lastWord);
     }
     IEnumerator ResetNextWord()
     {
         yield return new WaitForSeconds(0.2f);
         if (!wasWrong)
-            OnSayCorrectWord();
+            OnSayCorrectWordReal();
         yield return new WaitForSeconds(2);
         ResetWord();
         anim.Play("uiStart");
