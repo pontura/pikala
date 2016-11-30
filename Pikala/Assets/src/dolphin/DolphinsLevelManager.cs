@@ -61,14 +61,16 @@ public class DolphinsLevelManager : MonoBehaviour {
         nextLevelDistance += activeLevel.length;
         
     }
-    
+
+    string lastWrongWord = "";
+    float lastTimeCorrectWord = 0;
+
     private void LoadLevelAssets(int nextLevelDistance)
     {
         Lanes laneData = activeLevel.GetComponent<Lanes>();
         //  lanes.AddBackground(laneData.vereda, nextLevelDistance, activeLevel.length);
 
-
-        float lastTimeCorrectWord = 0;
+        
         foreach (Lane lane in laneData.all)
         {
             Transform[] allObjectsInLane = lane.transform.GetComponentsInChildren<Transform>(true);
@@ -83,7 +85,7 @@ public class DolphinsLevelManager : MonoBehaviour {
                         int rand = UnityEngine.Random.Range(0, 100);                       
                         if (ui.state == DolphinUI.states.PLAYING)
                         {
-                            if (rand < 35 && Time.time > lastTimeCorrectWord + 4)
+                            if (rand < 30 && Time.time > lastTimeCorrectWord + 3)
                             {
                                 obj = DolphinWord;
                                 settings.word = ui.ok.ToUpper();
@@ -92,16 +94,20 @@ public class DolphinsLevelManager : MonoBehaviour {
                             }
                             else 
                             {
-                                string wrongWord = GetWrongWord();
-                                if (wrongWord != "")
+                                string wrongWord = GetWrongWord().ToUpper();
+                                print("lastWrongWord " + lastWrongWord + "   wrongWord: " +  wrongWord);
+                                if (wrongWord != "" && lastWrongWord != wrongWord)
                                 {
+                                    print("_____wrongWord " + wrongWord);
+                                    lastWrongWord = wrongWord;
                                     obj = DolphinWord;
-                                    settings.word = GetWrongWord().ToUpper();
+                                    settings.word = wrongWord;
                                     settings.isCorrect = false;
                                     settings.speed = 0;
                                 }
                                 else
                                 {
+                                    print("_____wrongWord " + wrongWord);
                                     switch (Data.Instance.routes.routeID)
                                     {
                                         case 1:
@@ -132,18 +138,11 @@ public class DolphinsLevelManager : MonoBehaviour {
 	public void LoadNext () {
 	    
 	}
-    string lastWrongWord = "";
     string GetWrongWord()
     {       
         string wrongWord = ui.wrongWords[UnityEngine.Random.Range(0, ui.wrongWords.Count)];
         if (wrongWord == ui.ok)
             return GetWrongWord();
-        if (lastWrongWord == wrongWord)
-            return "";
-        else
-        {
-            lastWrongWord = wrongWord;
-            return wrongWord;
-        }
+         return wrongWord;
     }
 }
