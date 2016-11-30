@@ -30,6 +30,10 @@ public class Diploma : MonoBehaviour
 
         PlayerPrefs.SetInt("diploma", 1);
         diploma = 1;
+        Open();
+    }
+    public void Open()
+    {
         panel.SetActive(true);
         Invoke("OnShare", 2);
     }
@@ -55,7 +59,7 @@ public class Diploma : MonoBehaviour
 
         //Invoke("SetOff", 4);
     }
-    void SetOff()
+    public void SetOff()
     {
         panel.SetActive(false);
     }

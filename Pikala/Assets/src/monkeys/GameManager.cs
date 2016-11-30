@@ -24,11 +24,17 @@ public class GameManager : MainClass
    void Start()
     {
         Events.OnTutorialReady += OnTutorialReady;
+        Events.OnLevelComplete += OnLevelComplete;
     }
    void OnDestroy()
    {
        Events.OnTutorialReady -= OnTutorialReady;
-   }
+        Events.OnLevelComplete -= OnLevelComplete;
+    }
+    void OnLevelComplete(GameData.types t, bool a)
+    {
+        started = false;
+    }
    void OnTutorialReady()
     {
         tutorialAnim.Stop();

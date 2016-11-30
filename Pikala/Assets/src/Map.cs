@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Map : MonoBehaviour {
@@ -10,8 +11,13 @@ public class Map : MonoBehaviour {
     public Canvas canvas;
     public GameObject container;
 
+    public Image[] items1;
+    public Image[] items2;
+    public Image[] items3;
+
     void Start()
     {
+        
         if (!isMainMenu)
         {
             canvas.enabled = false;
@@ -21,6 +27,33 @@ public class Map : MonoBehaviour {
         else
         {
             Events.OnSoundFX("listos nuevo recorrido");
+            SetPremios();
+        }
+    }
+    void SetPremios()
+    {
+        Items items = Data.Instance.GetComponent<Items>();
+        int items1_id = items.unlockedItems_1;
+        int items2_id = items.unlockedItems_2;
+        int items3_id = items.unlockedItems_3;
+
+        int id = 0;
+        foreach (Image go in items1)
+        {
+            if (id == items1_id) go.enabled = (true); else go.enabled = (false);
+            id++;
+        }
+        id = 0;
+        foreach (Image go in items2)
+        {
+            if (id == items2_id) go.enabled = (true); else go.enabled = (false);
+            id++;
+        }
+        id = 0;
+        foreach (Image go in items3)
+        {
+            if (id == items3_id) go.enabled = (true); else go.enabled = (false);
+            id++;
         }
     }
     public void Init()

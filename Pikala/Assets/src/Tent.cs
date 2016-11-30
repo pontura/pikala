@@ -38,4 +38,11 @@ public class Tent : MainClass
     {
         Data.Instance.LoadLevel("Map", false);
     }
+    public void DiplomaClicked()
+    {
+        if (Data.Instance.GetComponent<Diploma>().diploma == 0)
+            Events.OnVoiceSay("Explicando diploma");
+        else
+            Data.Instance.GetComponent<Diploma>().Open();
+    }
 }

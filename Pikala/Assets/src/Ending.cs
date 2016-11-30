@@ -8,6 +8,7 @@ public class Ending : MainClass {
     private int unlockedItems;
     private string audioName = "";
     public GameObject readySignal;
+    bool winDiploma;
 
 	void Start () {
 
@@ -76,10 +77,14 @@ public class Ending : MainClass {
     }
     public void Continue()
     {
-        Data.Instance.LoadLevel("Map", false);
+        if(winDiploma)
+            Data.Instance.LoadLevel("Tent", false);
+        else
+            Data.Instance.LoadLevel("Map", false);
     }
     void Ready()
     {
+        winDiploma = true;
         readySignal.SetActive(true);
         Events.WinDiploma();
         GetComponent<Animation>().Stop();

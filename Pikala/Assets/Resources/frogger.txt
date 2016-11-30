@@ -95,7 +95,7 @@
 		},
 		{		
 			ok: "salir",
-			wrong: ["barrer", "llover", "diujar"]
+			wrong: ["barrer", "llover", "dibujar"]
 		},
 		{		
 			ok: "abrir",

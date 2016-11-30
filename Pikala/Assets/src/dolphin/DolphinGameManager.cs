@@ -111,6 +111,7 @@ public class DolphinGameManager : MonoBehaviour {
     void OnDolphinCrash()
     {
         realSpeed = 0f;
+        Events.OnSoundFX("dolphinCrash");
     }
     void OnResetSpeed()
     {
