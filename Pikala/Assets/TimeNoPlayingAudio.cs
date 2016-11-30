@@ -8,6 +8,7 @@ public class TimeNoPlayingAudio : MonoBehaviour {
     float timeToSayIt = 12f;
 
 	void Start () {
+        shoutUp = true;
         Events.ResetTimeToSayNotPlaying += ResetTimeToSayNotPlaying;
         Events.OnSwipe += OnSwipe;
         Events.OnTutorialReady += OnTutorialReady;
@@ -45,6 +46,7 @@ public class TimeNoPlayingAudio : MonoBehaviour {
     }
     void OnTutorialReady()
     {
+        print("OnTutorialReady");
         EnableAudio();
     }
     void EnableAudio()

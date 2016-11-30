@@ -47,6 +47,7 @@ public class MonekysManager : MonoBehaviour {
             else
             {
                 monkey.Init(vuelta.wrong[wrongID], false);
+                print(">>> " + vuelta.wrong[wrongID] + " _______ " + wrongID);
                 wrongID++;
             }
             id++;

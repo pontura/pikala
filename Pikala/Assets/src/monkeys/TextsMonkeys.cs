@@ -46,11 +46,6 @@ public class TextsMonkeys : Texts {
                 string word = Json[texts][a]["wrong"][b];
                 vuelta.wrong.Add(word);
             }
-            for (int b = 0; b < Json[texts][a]["wrong"].Count; b++)
-            {
-                string word = Json[texts][a]["wrong"][b];
-                vuelta.wrong.Add(word);
-            }
             Utils.ShuffleListTexts(vuelta.wrong);
             vueltas.Add(vuelta);
         }
