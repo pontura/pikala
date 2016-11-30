@@ -14,7 +14,6 @@ public class Diploma : MonoBehaviour
         SetOff();
         Events.WinDiploma += WinDiploma;
         diploma = PlayerPrefs.GetInt("diploma", 0);
-        print("diploma"  + PlayerPrefs.GetInt("diploma"));
     }
     
     void OnDestroy()
