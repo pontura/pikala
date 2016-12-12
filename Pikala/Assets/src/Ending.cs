@@ -11,7 +11,7 @@ public class Ending : MainClass {
     public GameObject readySignal;
     bool winDiploma;
     public AvatarsManager avatarsManager;
-
+    bool winPremio;
 
 	void Start () {
         avatarsManager = GetComponent<AvatarsManager>();
@@ -19,42 +19,18 @@ public class Ending : MainClass {
         int routeID = Data.Instance.routes.routeID;
         int count;
 
-        switch(routeID)
+        unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems;
+
+        if (unlockedItems >= Data.Instance.routes.routeID)
         {
-            case 1:
-                unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems_1;
-                if(unlockedItems>=3)
-                {
-                    Ready();
-                    return;
-                }
-                count = Data.Instance.GetComponent<Items>().items_1.Count;
-                audioName = Data.Instance.GetComponent<Items>().items_1[unlockedItems].audio;
-                isHe = Data.Instance.GetComponent<Items>().items_1[unlockedItems].isHe;
-                break;
-            case 2:
-                unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems_2;
-                if (unlockedItems >= 3)
-                {
-                    Ready();
-                    return;
-                }
-                count = Data.Instance.GetComponent<Items>().items_2.Count;
-                audioName = Data.Instance.GetComponent<Items>().items_2[unlockedItems].audio;
-                isHe = Data.Instance.GetComponent<Items>().items_2[unlockedItems].isHe;
-                break;
-            default:
-                unlockedItems = Data.Instance.GetComponent<Items>().unlockedItems_3;
-                if (unlockedItems >= 3)
-                {
-                    Ready();
-                    return;
-                }
-                count = Data.Instance.GetComponent<Items>().items_3.Count;
-                audioName = Data.Instance.GetComponent<Items>().items_3[unlockedItems].audio;
-                isHe = Data.Instance.GetComponent<Items>().items_3[unlockedItems].isHe;
-                break;
+            Ready();
+            return;
         }
+        count = Data.Instance.GetComponent<Items>().items.Count;
+        audioName = Data.Instance.GetComponent<Items>().items[unlockedItems].audio;
+        isHe = Data.Instance.GetComponent<Items>().items[unlockedItems].isHe;
+         
+
         EndingItems newItems = Instantiate(endingItems);
         newItems.transform.SetParent(container);
         newItems.transform.localPosition = Vector3.zero;
@@ -65,10 +41,12 @@ public class Ending : MainClass {
         {
             Events.OnSoundFX("arco iris regalo");
             Invoke("DiceRegalo", 10);
+            winPremio = true;
         }
         else
         {            
             Invoke("Continue", 3);
+            winPremio = false;
         }
 	}
     public void DiceRegalo()
@@ -88,7 +66,7 @@ public class Ending : MainClass {
     }
     public void Continue()
     {
-        if(winDiploma)
+        if(winPremio || winDiploma)
             Data.Instance.LoadLevel("Tent", false);
         else
             Data.Instance.LoadLevel("Map", false);

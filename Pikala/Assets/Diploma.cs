@@ -28,6 +28,8 @@ public class Diploma : MonoBehaviour
     {
         if (diploma == 1) return;
 
+        if (!Data.Instance.routes.CheckIfAllPerfect()) return;
+
         print("win diploma");
         PlayerPrefs.SetInt("diploma", 1);
         diploma = 1;

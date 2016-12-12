@@ -4,31 +4,19 @@ using System.Collections;
 
 public class MapMainMenu : MainClass
 {
-    public GameObject button2;
-    public GameObject button3;
 
-    public Map map;
+    public Map map1;
+    public Map map2;
+    public Map map3;
 
     void Start()
     {
+        Events.OnSoundFX("listos nuevo recorrido");
 
         Events.RutaSelected += RutaSelected;
-        map.Init();
+        SetActiveMap();
+    }
 
-        if(Data.Instance.routes.unlockedRoute<2)
-        {
-            Lock(button2);
-        }
-        if(Data.Instance.routes.unlockedRoute<3)
-        {
-            Lock(button3);
-        }
-    }
-    void Lock(GameObject button)
-    {
-        button.GetComponent<Button>().interactable = false;
-        button.GetComponent<Animator>().enabled = false;
-    }
     public void BackPressed()
     {
         Data.Instance.LoadLevel("MainMenu", false);
@@ -42,5 +30,32 @@ public class MapMainMenu : MainClass
         //Events.OnShowMap(false);
         Data.Instance.routes.RouteSelected(routeID);
         Data.Instance.levelsManager.LoadNextGame();
+    }
+    public void Next()
+    {
+        Data.Instance.GetComponent<MapInData>().mapID++;
+        if (Data.Instance.GetComponent<MapInData>().mapID > 2)
+            Data.Instance.GetComponent<MapInData>().mapID = 0;
+        SetActiveMap();
+    }
+    public void Prev()
+    {
+        Data.Instance.GetComponent<MapInData>().mapID--;
+        if (Data.Instance.GetComponent<MapInData>().mapID < 0)
+            Data.Instance.GetComponent<MapInData>().mapID = 2;
+        SetActiveMap();
+    }
+    void SetActiveMap()
+    {
+        map1.gameObject.SetActive(false);
+        map2.gameObject.SetActive(false);
+        map3.gameObject.SetActive(false);
+
+        switch (Data.Instance.GetComponent<MapInData>().mapID)
+        {
+            case 0: map1.gameObject.SetActive(true); map1.Init(); break;
+            case 1: map2.gameObject.SetActive(true); map2.Init(); break;
+            case 2: map3.gameObject.SetActive(true); map3.Init(); break;
+        }
     }
 }

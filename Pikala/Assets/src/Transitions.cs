@@ -11,7 +11,6 @@ public class Transitions : MonoBehaviour {
     private float speed = 1.5f;
     public GameObject wheel;
     
-    public GameObject map;
     private bool showMap;
     public MusicManager musicManager;
 
@@ -20,7 +19,6 @@ public class Transitions : MonoBehaviour {
         Events.OnSceneLoaded += OnSceneLoaded;
         panel.SetActive(false);
         canvas.enabled = false;
-        map.gameObject.SetActive(false);
 	}
     void OnSceneLoaded()
     {

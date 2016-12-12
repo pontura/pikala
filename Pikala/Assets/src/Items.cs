@@ -5,15 +5,10 @@ using System;
 
 public class Items : MonoBehaviour {
     
-    public int unlockedItems_1;
-    public int unlockedItems_2;
-    public int unlockedItems_3;
+    public int unlockedItems;
 
     public List<Inventory> allItems;
-
-    public List<Inventory> items_1;
-    public List<Inventory> items_2;
-    public List<Inventory> items_3;
+    public List<Inventory> items;
 
 
     private int DefaultUnlockedItems = 3;
@@ -44,9 +39,7 @@ public class Items : MonoBehaviour {
     {
         Events.WonItem += WonItem;
         Events.ResetApp += ResetApp;
-        unlockedItems_1 = PlayerPrefs.GetInt("unlockedItems_1", 0);
-        unlockedItems_2 = PlayerPrefs.GetInt("unlockedItems_2", 0);
-        unlockedItems_3 = PlayerPrefs.GetInt("unlockedItems_3", 0);
+        unlockedItems = PlayerPrefs.GetInt("unlockedItems", 0);
         SetLocks();
     }
     void OnDestroy()
@@ -56,48 +49,21 @@ public class Items : MonoBehaviour {
     }
     void ResetApp()
     {
-        PlayerPrefs.SetInt("unlockedItems_1", 0);
-        PlayerPrefs.SetInt("unlockedItems_2", 0);
-        PlayerPrefs.SetInt("unlockedItems_3", 0);
-        unlockedItems_1 = 0;
-        unlockedItems_2 = 0;
-        unlockedItems_3 = 0;
+        PlayerPrefs.SetInt("unlockedItems", 0);
+        unlockedItems = 0;
         SetLocks();
     }
     void WonItem(int routeID)
     {
-        switch(routeID)
-        {
-            case 1: unlockedItems_1++; PlayerPrefs.SetInt("unlockedItems_1", unlockedItems_1); break;
-            case 2: unlockedItems_2++; PlayerPrefs.SetInt("unlockedItems_2", unlockedItems_2);  break;
-            case 3: unlockedItems_3++; PlayerPrefs.SetInt("unlockedItems_3", unlockedItems_3);  break;
-        }
+         unlockedItems++; PlayerPrefs.SetInt("unlockedItems", unlockedItems);
         SetLocks();
     }
     void SetLocks()
     {
         int id = 0;
-        foreach (Inventory data in items_1)
+        foreach (Inventory data in items)
         {
-            if (id < unlockedItems_1)
-                GetItemData(data.partType, data.id).locked = false;
-            else
-                GetItemData(data.partType, data.id).locked = true;
-            id++;
-        }
-        id = 0;
-        foreach (Inventory data in items_2)
-        {
-            if (id < unlockedItems_2)
-                GetItemData(data.partType, data.id).locked = false;
-            else
-                GetItemData(data.partType, data.id).locked = true;
-            id++;
-        }
-        id = 0;
-        foreach (Inventory data in items_3)
-        {
-            if (id < unlockedItems_3)
+            if (id < unlockedItems)
                 GetItemData(data.partType, data.id).locked = false;
             else
                 GetItemData(data.partType, data.id).locked = true;

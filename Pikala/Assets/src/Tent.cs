@@ -17,15 +17,15 @@ public class Tent : MainClass
             diploma.Init(false);
         else diploma.Init(true);
 
-        if (Data.Instance.GetComponent<Items>().unlockedItems_1 > 2)
+        if (Data.Instance.GetComponent<Items>().unlockedItems > 2)
             special1.Init(true);
         else special1.Init(false);
 
-        if (Data.Instance.GetComponent<Items>().unlockedItems_2 > 2)
+        if (Data.Instance.GetComponent<Items>().unlockedItems > 5)
             special2.Init(true);
         else special2.Init(false);
 
-        if (Data.Instance.GetComponent<Items>().unlockedItems_3 > 2)
+        if (Data.Instance.GetComponent<Items>().unlockedItems > 8)
             special3.Init(true);
         else special3.Init(false);
 

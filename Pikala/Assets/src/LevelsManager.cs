@@ -30,6 +30,7 @@ public class LevelsManager : MonoBehaviour {
         Events.OnLevelComplete += OnLevelComplete;
         Events.OnOkWord += OnOkWord;
         Events.ResetApp += ResetApp;
+        Events.DebugWinLevel += DebugWinLevel;
 
         int unlockedRoute = PlayerPrefs.GetInt("unlockedRoute", 1);
         if(unlockedRoute>1)
@@ -46,6 +47,7 @@ public class LevelsManager : MonoBehaviour {
         Events.OnLevelComplete -= OnLevelComplete;
         Events.OnOkWord -= OnOkWord;
         Events.ResetApp -= ResetApp;
+        Events.DebugWinLevel -= DebugWinLevel;
     }
     void ResetApp()
     {
@@ -114,6 +116,11 @@ public class LevelsManager : MonoBehaviour {
         else
             LoadNextGame();
     }
+    void DebugWinLevel()
+    {
+        Data.Instance.routes.gameID = 6;
+        OnLevelComplete(GameData.types.DOLPHIN, true);
+    }
     public void LoadNextGame()
     {
         Events.OnMusic("marimba");
@@ -140,6 +147,16 @@ public class LevelsManager : MonoBehaviour {
     }
     void EndSceneOn()
     {
-        Data.Instance.LoadLevel("Ending" + Data.Instance.routes.routeID, true);
+        int routeID = Data.Instance.routes.routeID;
+        switch (routeID)
+        {
+            case 4: routeID = 1; break;
+            case 5: routeID = 2; break;
+            case 6: routeID = 3; break;
+            case 7: routeID = 1; break;
+            case 8: routeID = 2; break;
+            case 9: routeID = 3; break;
+        }
+        Data.Instance.LoadLevel("Ending" + routeID, true);
     }
 }

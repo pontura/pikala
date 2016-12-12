@@ -31,6 +31,7 @@ public class VoicesManager : MonoBehaviour
     AudioClip sayInDelay = null;
     void OnVoiceSayFromList(string listName, float delay)
     {
+        print("____________ OnVoiceSayFromList " + listName);
         if (listName == "")
             audioSource.Stop();
         else
@@ -54,6 +55,7 @@ public class VoicesManager : MonoBehaviour
     }
     void OnVoiceSay(string soundName)
     {
+        print("____________" + soundName);
         string audioName = soundName;
         switch (audioName.ToLower())
         {
@@ -81,11 +83,5 @@ public class VoicesManager : MonoBehaviour
         else
             audioSource.PlayOneShot(Resources.Load("SFX/" + audioName) as AudioClip);
         print("Dice: " + audioName);
-    }
-    void OnSpecialVoice(string soundName)
-    {
-        string audioName = soundName;
-        audioSource.clip = (Resources.Load("SFX/" + audioName) as AudioClip);
-        audioSource.Play();
     }
 }

@@ -34,6 +34,11 @@ public class GameManager : MainClass
     void OnLevelComplete(GameData.types t, bool a)
     {
         started = false;
+        Invoke("DelayReady", 1);
+    }
+    void DelayReady()
+    {
+        transform.localPosition = new Vector3(1000, 0, 0);
     }
    void OnTutorialReady()
     {

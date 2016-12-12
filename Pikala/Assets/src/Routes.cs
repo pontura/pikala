@@ -13,6 +13,14 @@ public class Routes : MonoBehaviour {
     public List<GameData> route2;
     public List<GameData> route3;
 
+    public List<GameData> route4;
+    public List<GameData> route5;
+    public List<GameData> route6;
+
+    public List<GameData> route7;
+    public List<GameData> route8;
+    public List<GameData> route9;
+
     void Start()
     {
         Events.UnlockNextRoute += UnlockNextRoute;
@@ -35,6 +43,50 @@ public class Routes : MonoBehaviour {
         foreach (GameData gameData in route3)
         {
             if (PlayerPrefs.GetInt("level_3_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+
+        id = 0;
+        foreach (GameData gameData in route4)
+        {
+            if (PlayerPrefs.GetInt("level_4_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+        id = 0;
+        foreach (GameData gameData in route5)
+        {
+            if (PlayerPrefs.GetInt("level_5_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+        id = 0;
+        foreach (GameData gameData in route6)
+        {
+            if (PlayerPrefs.GetInt("level_6_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+
+        id = 0;
+        foreach (GameData gameData in route7)
+        {
+            if (PlayerPrefs.GetInt("level_7_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+        id = 0;
+        foreach (GameData gameData in route8)
+        {
+            if (PlayerPrefs.GetInt("level_8_" + id) == 1)
+                gameData.perfect = true;
+            id++;
+        }
+        id = 0;
+        foreach (GameData gameData in route9)
+        {
+            if (PlayerPrefs.GetInt("level_9_" + id) == 1)   
                 gameData.perfect = true;
             id++;
         }
@@ -124,5 +176,27 @@ public class Routes : MonoBehaviour {
         }
        // print("totalPerfect: " + totalPerfect + "totalData: " + totalData);
         return (float)totalPerfect / (float)totalData;
+    }
+    public bool CheckIfAllPerfect()
+    {
+        foreach (GameData gd in route1)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route2)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route3)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route4)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route5)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route6)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route7)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route8)
+            if (!gd.perfect) return false;
+        foreach (GameData gd in route9)
+            if (!gd.perfect) return false;
+        return true;
     }
 }

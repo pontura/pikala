@@ -44,15 +44,20 @@ public class Data : MonoBehaviour
     {
         this.newScene = aLevelName;
         GetComponent<Transitions>().SetOn(showMap);
-
+        
         if (showMap)
         {
+           // Invoke("EmptyDelayed", 2);
             if (Data.Instance.GetComponent<MusicManager>().volume == 0)
                 time_ViewingMap = 5.5f ;
             Invoke("LoadDelayed", time_ViewingMap);
         }
         else
             Invoke("LoadDelayed", 0.75f);       
+    }
+    void EmptyDelayed()
+    {
+        SceneManager.LoadScene("Empty");
     }
     void LoadDelayed()
     {

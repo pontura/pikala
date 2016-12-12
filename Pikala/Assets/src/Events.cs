@@ -3,6 +3,7 @@ using System.Collections;
 
 public static class Events {
 
+    public static System.Action DebugWinLevel = delegate { };
     public static System.Action ResetApp = delegate { }; 
     public static System.Action OnSceneLoaded = delegate { };
     public static System.Action StartGame = delegate { };

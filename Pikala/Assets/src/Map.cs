@@ -1,58 +1,71 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 
     public bool isMainMenu;
+    public int mapID;
     public MainMenuRoute route1;
     public MainMenuRoute route2;
     public MainMenuRoute route3;
+
     public Canvas canvas;
     public GameObject container;
 
-    public Image[] items1;
-    public Image[] items2;
-    public Image[] items3;
+    public GameObject[] items;
+
+    public Button[] buttons;
 
     void Start()
     {
-        
+        if (isMainMenu)
+        {
+            SetPremios();
+        }
+    }
+    void OnEnable()
+    {
         if (!isMainMenu)
         {
             canvas.enabled = false;
             container.SetActive(false);
-            Events.OnShowMap += OnShowMap;
         }
         else
         {
-            Events.OnSoundFX("listos nuevo recorrido");
             SetPremios();
         }
     }
+    void Lock(Button button)
+    {
+        button.interactable = false;
+        button.enabled = false;
+        button.GetComponent<Animator>().Stop();
+    }
+    public int unlockedItems;
     void SetPremios()
     {
-        Items items = Data.Instance.GetComponent<Items>();
-        int items1_id = items.unlockedItems_1;
-        int items2_id = items.unlockedItems_2;
-        int items3_id = items.unlockedItems_3;
+        unlockedItems = Data.Instance.GetComponent<Items>().unlockedItems;
 
-        int id = 0;
-        foreach (Image go in items1)
+        int id = mapID*3;
+        foreach (GameObject go in items)
         {
-            if (id == items1_id) go.enabled = (true); else go.enabled = (false);
+            if (id < unlockedItems)
+                go.SetActive(false);
+            else
+                go.SetActive(true);
             id++;
         }
-        id = 0;
-        foreach (Image go in items2)
+
+        id = mapID * 3;
+        print(id + "   unlockedItems:    " + unlockedItems);
+        foreach (Button button in buttons)
         {
-            if (id == items2_id) go.enabled = (true); else go.enabled = (false);
-            id++;
-        }
-        id = 0;
-        foreach (Image go in items3)
-        {
-            if (id == items3_id) go.enabled = (true); else go.enabled = (false);
+            if (id > unlockedItems)
+            {
+                Lock(button);
+            }
             id++;
         }
     }
@@ -68,14 +81,34 @@ public class Map : MonoBehaviour {
             route3.ResetPlayedPoints();
         }
 
-        for (int id = 0; id < Data.Instance.routes.route1.Count; id++)
-            route1.Init(id, Data.Instance.routes.route1[id].perfect);
+        List<GameData> route_a = Data.Instance.routes.route1;
+        List<GameData> route_b = Data.Instance.routes.route2;
+        List<GameData> route_c = Data.Instance.routes.route3;
 
-        for (int id = 0; id < Data.Instance.routes.route2.Count; id++)
-            route2.Init(id, Data.Instance.routes.route2[id].perfect);
+        switch (mapID)
+        {
+            case 1:
+                route_a = Data.Instance.routes.route4;
+                route_b = Data.Instance.routes.route5;
+                route_c = Data.Instance.routes.route6;
+                break;
 
-        for (int id = 0; id < Data.Instance.routes.route3.Count; id++)
-            route3.Init(id, Data.Instance.routes.route3[id].perfect);
+            case 2:
+                route_a = Data.Instance.routes.route7;
+                route_b = Data.Instance.routes.route8;
+                route_c = Data.Instance.routes.route9;
+                break;
+
+        }
+
+        for (int id = 0; id < route_a.Count; id++)
+            route1.Init(id, route_a[id].perfect);
+
+        for (int id = 0; id < route_b.Count; id++)
+            route2.Init(id, route_b[id].perfect);
+
+        for (int id = 0; id < route_c.Count; id++)
+            route3.Init(id, route_c[id].perfect);
 
         
         if (!isMainMenu)
@@ -93,25 +126,7 @@ public class Map : MonoBehaviour {
         }
         
     }
-    void OnDestroy()
-    {
-        Events.OnShowMap -= OnShowMap;
-    }
-    public void OnShowMap(bool showIt)
-    {
-        if (showIt)
-        {
-            canvas.enabled = true;
-            container.SetActive(true);
-            container.GetComponent<Animation>().Play("map_on");
-            Init();
-        }
-        else
-        {
-            if(container.activeSelf)
-                container.GetComponent<Animation>().Play("map_off");
-        }
-    }
+   
     public void SetRutaSelected(int id)
     {
         Events.RutaSelected(id);
