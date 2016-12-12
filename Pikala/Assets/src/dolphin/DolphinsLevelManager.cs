@@ -22,14 +22,26 @@ public class DolphinsLevelManager : MonoBehaviour {
     private int offset = 15;
     public DolphinUI ui;
 
+    void Start()
+    {
+        Events.OnDolphinCrash += OnDolphinCrash;
+    }
     public void Init()
     {
-
         activeLevel = StartingLevel;
         nextLevelDistance = StartingLevel.length;
         activeGroupId = -1;
         Invoke("Continue", 0.2f);
         CheckForNewLevel(0);
+        
+    }
+    void OnDestroy()
+    {
+        Events.OnDolphinCrash -= OnDolphinCrash;
+    }
+    void OnDolphinCrash()
+    {
+        nextLevelDistance += 20;
     }
     public void Continue()
     {
@@ -95,10 +107,9 @@ public class DolphinsLevelManager : MonoBehaviour {
                             else 
                             {
                                 string wrongWord = GetWrongWord().ToUpper();
-                                print("lastWrongWord " + lastWrongWord + "   wrongWord: " +  wrongWord);
+                               // print("lastWrongWord " + lastWrongWord + "   wrongWord: " +  wrongWord);
                                 if (wrongWord != "" && lastWrongWord != wrongWord)
                                 {
-                                    print("_____wrongWord " + wrongWord);
                                     lastWrongWord = wrongWord;
                                     obj = DolphinWord;
                                     settings.word = wrongWord;
@@ -107,7 +118,6 @@ public class DolphinsLevelManager : MonoBehaviour {
                                 }
                                 else
                                 {
-                                    print("_____wrongWord " + wrongWord);
                                     switch (Data.Instance.routes.routeID)
                                     {
                                         case 1:

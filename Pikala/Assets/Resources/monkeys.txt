@@ -63,13 +63,13 @@
 		},
 		{
 			audio:"elcafecaliente",
-			title: "el café caliente",
+			title: "el cafe caliente",
 			ok: "caliente",
 			wrong: ["calientes", "rica"]
 		},
 		{
 			audio:"undelfinsaltarin",
-			title: "un delfín saltarín",
+			title: "un delfin saltarin",
 			ok: "saltarin",
 			wrong: ["saltarina", "saltarines"]
 		},
@@ -171,7 +171,7 @@
 		},
 		{
 			audio:"untiburongigante",
-			title: "un tiburón gigante",
+			title: "un tiburon gigante",
 			ok: "un",
 			wrong: ["unos", "unas"]
 		},

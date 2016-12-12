@@ -7,11 +7,14 @@ public class Ending : MainClass {
     public Transform container;
     private int unlockedItems;
     private string audioName = "";
+    public bool isHe;
     public GameObject readySignal;
     bool winDiploma;
+    public AvatarsManager avatarsManager;
+
 
 	void Start () {
-
+        avatarsManager = GetComponent<AvatarsManager>();
         readySignal.SetActive(false);
         int routeID = Data.Instance.routes.routeID;
         int count;
@@ -27,6 +30,7 @@ public class Ending : MainClass {
                 }
                 count = Data.Instance.GetComponent<Items>().items_1.Count;
                 audioName = Data.Instance.GetComponent<Items>().items_1[unlockedItems].audio;
+                isHe = Data.Instance.GetComponent<Items>().items_1[unlockedItems].isHe;
                 break;
             case 2:
                 unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems_2;
@@ -37,6 +41,7 @@ public class Ending : MainClass {
                 }
                 count = Data.Instance.GetComponent<Items>().items_2.Count;
                 audioName = Data.Instance.GetComponent<Items>().items_2[unlockedItems].audio;
+                isHe = Data.Instance.GetComponent<Items>().items_2[unlockedItems].isHe;
                 break;
             default:
                 unlockedItems = Data.Instance.GetComponent<Items>().unlockedItems_3;
@@ -47,6 +52,7 @@ public class Ending : MainClass {
                 }
                 count = Data.Instance.GetComponent<Items>().items_3.Count;
                 audioName = Data.Instance.GetComponent<Items>().items_3[unlockedItems].audio;
+                isHe = Data.Instance.GetComponent<Items>().items_3[unlockedItems].isHe;
                 break;
         }
         EndingItems newItems = Instantiate(endingItems);
@@ -66,7 +72,12 @@ public class Ending : MainClass {
         }
 	}
     public void DiceRegalo()
-    {       
+    {
+        if(isHe)
+            avatarsManager.BoyTalks();
+        else
+            avatarsManager.GirlTalk();
+
         print("Ending: da premio: " + audioName);
         Events.OnSoundFX("premios/" + audioName);
         Invoke("Tent", 3);

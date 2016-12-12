@@ -5,7 +5,7 @@ public class TimeNoPlayingAudio : MonoBehaviour {
 
     bool shoutUp;
     public float seconds;
-    float timeToSayIt = 12f;
+    float timeToSayIt = 50f;
 
 	void Start () {
         shoutUp = true;

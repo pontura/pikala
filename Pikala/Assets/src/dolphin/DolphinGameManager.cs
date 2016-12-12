@@ -155,6 +155,10 @@ public class DolphinGameManager : MonoBehaviour {
         if (state != states.ENDED)
         {
             dolphinManager.UpdatePosition(distance);
+
+            if (DolphinGame.Instance.state == DolphinGame.states.ENDED)
+                return;
+
             if (state != states.FINISH)
             {
                 foreach (BackgroundScrolleable bgScrolleable in backgroundsScrolleable)

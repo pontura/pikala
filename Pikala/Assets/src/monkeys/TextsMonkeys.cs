@@ -40,6 +40,18 @@ public class TextsMonkeys : Texts {
             vuelta.audio = Json[texts][a]["audio"];
             vuelta.title = Json[texts][a]["title"];
             vuelta.ok = Json[texts][a]["ok"];
+
+            switch (vuelta.title)
+            {
+                case "un delfin saltarin": vuelta.title = "un delfín saltarín"; break;
+                case "el cafe caliente": vuelta.title = "el café caliente"; break;
+                case "un tiburon gigante": vuelta.title = "un tiburón gigante"; break;
+            }
+            switch (vuelta.ok)
+            {
+                case "saltarin": vuelta.ok = "saltarín"; break;
+            }
+
             vuelta.wrong = new List<string>();
             for (int b = 0; b < Json[texts][a]["wrong"].Count; b++ )
             {

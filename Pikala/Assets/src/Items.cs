@@ -24,6 +24,7 @@ public class Items : MonoBehaviour {
         public AvatarCustomizator.partsType partType;
         public int id;
         public string audio;
+        public bool isHe;
     }
 
     public Data[] body;
@@ -36,7 +37,8 @@ public class Items : MonoBehaviour {
     {
         public int id;
         public bool hasToSides;
-        public bool locked;        
+        public bool locked;
+             
     }
     void Start()
     {
