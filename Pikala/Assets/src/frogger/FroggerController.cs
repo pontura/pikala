@@ -73,7 +73,13 @@ public class FroggerController : MonoBehaviour {
                 switch (Data.Instance.routes.routeID)
                 {
                     case 1: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas1; break;
+                    case 4: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas1; break;
+                    case 7: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas1; break;
+
+                    case 5: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas2; break;
+                    case 8: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas2; break;
                     case 2: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas2; break;
+
                     default: vueltas = Data.Instance.GetComponent<TextsFrogger>().vueltas3; break;
                 }
                 TextsFrogger.Vuelta vuelta = vueltas[GetVueltaByControlledRandom(vueltas)];

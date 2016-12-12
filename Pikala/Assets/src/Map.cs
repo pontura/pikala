@@ -10,9 +10,8 @@ public class Map : MonoBehaviour {
     public MainMenuRoute route1;
     public MainMenuRoute route2;
     public MainMenuRoute route3;
-
-    public Canvas canvas;
-    public GameObject container;
+    
+   // public GameObject container;
 
     public GameObject[] items;
 
@@ -29,8 +28,7 @@ public class Map : MonoBehaviour {
     {
         if (!isMainMenu)
         {
-            canvas.enabled = false;
-            container.SetActive(false);
+           // container.SetActive(false);
         }
         else
         {
@@ -117,9 +115,9 @@ public class Map : MonoBehaviour {
             route2.SetOff();
             route3.SetOff();
 
-            if (routeID == 1)
+            if (routeID == 1 || routeID == 4 || routeID == 7)
                 route1.SetOn(gameID);
-            else if (routeID == 2)
+            else if (routeID == 2 || routeID == 5 || routeID == 8)
                 route2.SetOn(gameID);
             else
                 route3.SetOn(gameID);

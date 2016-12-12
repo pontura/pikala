@@ -27,10 +27,14 @@ public class TextsFrogger : Texts {
          switch (Data.Instance.routes.routeID)
          {
              case 2:
-                 activeRoute = vueltas2;
+            case 5:
+            case 8:
+                activeRoute = vueltas2;
                  break;
              case 3:
-                 activeRoute = vueltas3;
+            case 6:
+            case 9:
+                activeRoute = vueltas3;
                  break;
          }       
 
@@ -49,7 +53,19 @@ public class TextsFrogger : Texts {
             case 2:
                 activeRoute = vueltas2;
                 break;
+            case 5:
+                activeRoute = vueltas2;
+                break;
+            case 8:
+                activeRoute = vueltas2;
+                break;
             case 3:
+                activeRoute = vueltas3;
+                break;
+            case 6:
+                activeRoute = vueltas3;
+                break;
+            case 9:
                 activeRoute = vueltas3;
                 break;
         }

@@ -88,7 +88,7 @@ public class FroggerUI : MonoBehaviour
         wasWrong = false;
         string terminacion = text.Substring(text.Length - 2);
 
-        print("OnGotWord   " + text);
+        print(terminacion + " OnGotWord   " + text + " ok_terminacion: " + ok_terminacion);
 
         if (ResetRoutine != null)
             StopCoroutine(ResetRoutine);

@@ -7,14 +7,17 @@ public class MainMenuRoutePoint : MonoBehaviour {
     public GameObject doneImage;
     public Sprite imageNotPerfectSymbol;
     public Sprite imagePerfectSymbol;
-    public Image imagePlayed;
+    public GameObject imagePlayed;
 
     bool isPerfect;
 
     void Start()
     {
         if (imagePlayed != null)
-            imagePlayed.enabled = false;
+        {
+            imagePlayed.SetActive(false);
+            imagePlayed.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+        }
     }
 	public void Init(bool isPerfect) {
 
@@ -35,12 +38,12 @@ public class MainMenuRoutePoint : MonoBehaviour {
     public void SetPlayed()
     {
         if (imagePlayed != null)
-            imagePlayed.enabled = true;
+            imagePlayed.SetActive(true);
     }
     public void SetUnPlayed()
     {
         if (imagePlayed != null)
-            imagePlayed.enabled = false;
+            imagePlayed.SetActive(false);
     }
     public void SetOn()
     {

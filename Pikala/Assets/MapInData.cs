@@ -41,6 +41,7 @@ public class MapInData : MonoBehaviour
     }
     void SetActiveMap()
     {
+        print("SetActiveMap " + mapID);
         map1.gameObject.SetActive(false);
         map2.gameObject.SetActive(false);
         map3.gameObject.SetActive(false);
