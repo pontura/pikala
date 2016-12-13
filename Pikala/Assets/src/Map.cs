@@ -23,12 +23,26 @@ public class Map : MonoBehaviour {
         {
             SetPremios();
         }
+        else
+        {
+            foreach (Button go in buttons)
+                go.GetComponent<Animator>().enabled = false;
+        }
     }
     void OnEnable()
     {
         if (!isMainMenu)
         {
-           // container.SetActive(false);
+            int routeID = Data.Instance.routes.routeID;
+            int id = 0;
+            foreach (GameObject go in items)
+            {
+                id++;
+                if (id == routeID || id + 3 == routeID || id + 6 == routeID)
+                    go.SetActive(true);
+                else
+                    go.SetActive(false);
+            }
         }
         else
         {
@@ -108,9 +122,10 @@ public class Map : MonoBehaviour {
         for (int id = 0; id < route_c.Count; id++)
             route3.Init(id, route_c[id].perfect);
 
-        
+        print("ES es mail menu");
         if (!isMainMenu)
         {
+            print("No es mail menu");
             route1.SetOff();
             route2.SetOff();
             route3.SetOff();

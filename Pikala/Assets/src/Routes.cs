@@ -140,7 +140,13 @@ public class Routes : MonoBehaviour {
         {
             case 1: return route1[gameID];
             case 2: return route2[gameID];
-            default: return route3[gameID];
+            case 3: return route3[gameID];
+            case 4: return route4[gameID];
+            case 5: return route5[gameID];
+            case 6: return route6[gameID];
+            case 7: return route7[gameID];
+            case 8: return route8[gameID];
+            default: return route9[gameID];
         }
     }
     public int GetTotalWordsOfActiveGame()
@@ -174,7 +180,45 @@ public class Routes : MonoBehaviour {
             if (data.perfect)
                 totalPerfect++;
         }
-       // print("totalPerfect: " + totalPerfect + "totalData: " + totalData);
+
+        foreach (GameData data in route4)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route5)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route6)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+
+        foreach (GameData data in route7)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route8)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+        foreach (GameData data in route9)
+        {
+            totalData++;
+            if (data.perfect)
+                totalPerfect++;
+        }
+
         return (float)totalPerfect / (float)totalData;
     }
     public bool CheckIfAllPerfect()
