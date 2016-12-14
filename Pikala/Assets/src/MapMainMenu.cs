@@ -9,12 +9,35 @@ public class MapMainMenu : MainClass
     public Map map2;
     public Map map3;
 
+    public GameObject next;
+    public GameObject prev;
+
     void Start()
     {
         Events.OnSoundFX("listos nuevo recorrido");
 
         Events.RutaSelected += RutaSelected;
         SetActiveMap();
+
+        SetButtonsState();
+    }
+    void SetButtonsState()
+    {
+        switch (Data.Instance.GetComponent<MapInData>().mapID)
+        {
+            case 0:
+                next.SetActive(true);
+                prev.SetActive(false);
+                break;
+            case 1:
+                next.SetActive(true);
+                prev.SetActive(true);
+                break;
+            case 2:
+                next.SetActive(false);
+                prev.SetActive(true);
+                break;
+        }
     }
 
     public void BackPressed()
@@ -47,6 +70,8 @@ public class MapMainMenu : MainClass
     }
     void SetActiveMap()
     {
+        SetButtonsState();
+
         map1.gameObject.SetActive(false);
         map2.gameObject.SetActive(false);
         map3.gameObject.SetActive(false);
