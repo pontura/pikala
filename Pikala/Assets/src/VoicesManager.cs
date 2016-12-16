@@ -59,7 +59,7 @@ public class VoicesManager : MonoBehaviour
         string audioName = soundName;
         switch (audioName.ToLower())
         {
-            case "palabras/montana":
+            case "palabras/montaña":
                 audioName = "palabras/montana"; break;
             case "palabras/niño":
                 audioName = "palabras/nino"; break;

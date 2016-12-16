@@ -175,7 +175,7 @@ public class DolphinUI : MonoBehaviour
             else if (activeWord.gameType == GameData.types.BRIDGE)
                 UI_Pictures.GetComponent<Animation>().Play("ok");
 
-            okWords++;
+           
             ReplaceOkWordWith(text);
             Events.OnSoundFX("correctWord");
             Events.OnVoiceSayFromList("felicitaciones", 0.5f);
@@ -208,7 +208,8 @@ public class DolphinUI : MonoBehaviour
     IEnumerator Next()
     {
         state = states.WAITING;
-        yield return new WaitForSeconds(2.1f);        
+        yield return new WaitForSeconds(2.1f);
+        okWords++;
 
         if (okWords >= Data.Instance.wordsUsed.words.Count)
         {
@@ -243,7 +244,7 @@ public class DolphinUI : MonoBehaviour
             Events.OnPerfect();
         else
             Events.OnGood();
-        Events.OnLevelComplete(GameData.types.DOLPHIN, false);
+        Events.OnLevelComplete(GameData.types.DOLPHIN, commitError);
     }
     IEnumerator ResetNextWord()
     {

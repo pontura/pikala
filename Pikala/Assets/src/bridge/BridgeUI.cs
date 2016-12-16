@@ -71,7 +71,7 @@ public class BridgeUI : MonoBehaviour
         field.text = realWord;
         pictureUI.Init(realWord);
 
-        if (totalWordsPlayed < 2)
+        if (totalWordsPlayed < 4)
             OnSayCorrectWord();
     }
     void OnGameReady()
