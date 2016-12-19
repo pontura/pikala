@@ -32,6 +32,7 @@ public class DolphinUI : MonoBehaviour
 
     void Start()
     {
+        Data.Instance.wordsUsed.Reset();
         filledImage.fillAmount = 0;
         okWords = 0;
         Events.OnGotWord += OnGotWord;
@@ -183,13 +184,14 @@ public class DolphinUI : MonoBehaviour
             if (okWords >= Data.Instance.wordsUsed.words.Count)
             {
                 dolphinGameManager.LevelComplete();
-                Data.Instance.wordsUsed.Empty();
             }
             Events.OnOkWord(GameData.types.DOLPHIN);
             StartCoroutine(Next());
 
             float totalWordsUsed = (float)Data.Instance.wordsUsed.words.Count;
             float actualWord = (float)Data.Instance.wordsUsed.GetActualID() +1;
+
+           
 
             float progress = actualWord / totalWordsUsed;
             filledImage.fillAmount = progress;
@@ -245,6 +247,7 @@ public class DolphinUI : MonoBehaviour
         else
             Events.OnGood();
         Events.OnLevelComplete(GameData.types.DOLPHIN, commitError);
+        Data.Instance.wordsUsed.Empty();
     }
     IEnumerator ResetNextWord()
     {

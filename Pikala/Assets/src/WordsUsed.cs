@@ -7,7 +7,7 @@ public class WordsUsed : MonoBehaviour {
 
     public List<Word> words;
     public List<Word> shuffledWords;
-    int lastWordSendedID = -1;
+    public int lastWordSendedID = -1;
 
     [Serializable]
     public class Word
@@ -62,5 +62,9 @@ public class WordsUsed : MonoBehaviour {
     {
         if (lastWordSendedID == -1) return 0;
         return lastWordSendedID;
+    }
+    public void Reset()
+    {
+        lastWordSendedID = -1;
     }
 }

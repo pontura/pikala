@@ -31,14 +31,17 @@ public class Map : MonoBehaviour {
     }
     void OnEnable()
     {
+        print("OnEnable  " + isMainMenu);
         if (!isMainMenu)
         {
+
             int routeID = Data.Instance.routes.routeID;
+            int unlockedRoute = Data.Instance.routes.unlockedRoute;
             int id = 0;
             foreach (GameObject go in items)
             {
                 id++;
-                if (id == routeID || id + 3 == routeID || id + 6 == routeID)
+                if ((id == routeID || id + 3 == routeID || id + 6 == routeID) && ((int)(unlockedRoute+1) < routeID))
                     go.SetActive(true);
                 else
                     go.SetActive(false);
