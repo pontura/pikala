@@ -59,6 +59,11 @@ public class Ending : MainClass {
         print("Ending: da premio: " + audioName);
         Events.OnSoundFX("premios/" + audioName);
         Invoke("Tent", 3);
+        Invoke("ResetFelicita", 2);
+    }
+    void ResetFelicita()
+    {
+        avatarsManager.Idle();
     }
     public void Tent()
     {

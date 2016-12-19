@@ -74,7 +74,7 @@ public class DolphinUI : MonoBehaviour
             UI_Phrases.gameObject.SetActive(false);
             UI_Pictures.gameObject.SetActive(true);
             UI_Word.gameObject.SetActive(false);
-            string word = textsBridge.vueltas[activeWord.id].palabra.ToUpper();
+            string word = textsBridge.vueltas[activeWord.id].palabra;
             ok = textsBridge.GetPalabraReal(word);
             toSay = textsBridge.GetPalabraReal(textsBridge.vueltas[activeWord.id].palabra);
             foreach (TextsBridge.Vuelta vuelta in textsBridge.vueltas)
@@ -107,25 +107,25 @@ public class DolphinUI : MonoBehaviour
                 if (vuelta.id == activeWord.id)
                     vueltaReal = vuelta;
 
-            ok = vueltaReal.ok.ToUpper();
+            ok = vueltaReal.ok;
             toSay = vueltaReal.ok;
 
             string lastTwoChars = ok.Substring(ok.Length - 2);
 
-            UI_Word.Init(lastTwoChars.ToUpper());
+            UI_Word.Init(lastTwoChars);
         }
         else
         {
             UI_Phrases.gameObject.SetActive(true);
             UI_Pictures.gameObject.SetActive(false);
             UI_Word.gameObject.SetActive(false);
-            ok = Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].ok.ToUpper();
-            title = Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].title.ToUpper();
+            ok = Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].ok;
+            title = Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].title;
             toSay = Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].audio;
             foreach (string wrongWord in Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].wrong)
                 wrongWords.Add(wrongWord);
 
-            UI_Phrases.Init(ok);
+            UI_Phrases.Init(Data.Instance.GetComponent<TextsMonkeys>().vueltas[activeWord.id].ok);
             ReplaceOkWordWith("___");
         }       
     }
@@ -146,7 +146,7 @@ public class DolphinUI : MonoBehaviour
     }
     private void OnGotWord(string text)
     {
-        text = text.ToUpper();
+        text = text;
         if (ResetRoutine != null)
             StopCoroutine(ResetRoutine);
 

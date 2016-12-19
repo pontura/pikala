@@ -100,13 +100,13 @@ public class DolphinsLevelManager : MonoBehaviour {
                             if (rand < 30 && Time.time > lastTimeCorrectWord + 3)
                             {
                                 obj = DolphinWord;
-                                settings.word = ui.ok.ToUpper();
+                                settings.word = ui.ok;
                                 settings.isCorrect = true;
                                 lastTimeCorrectWord = Time.time;
                             }
                             else 
                             {
-                                string wrongWord = GetWrongWord().ToUpper();
+                                string wrongWord = GetWrongWord();
                                // print("lastWrongWord " + lastWrongWord + "   wrongWord: " +  wrongWord);
                                 if (wrongWord != "" && lastWrongWord != wrongWord)
                                 {

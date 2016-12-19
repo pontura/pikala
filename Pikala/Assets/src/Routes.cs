@@ -115,6 +115,20 @@ public class Routes : MonoBehaviour {
             gameData.perfect = false;
         foreach (GameData gameData in route3)
             gameData.perfect = false;
+
+        foreach (GameData gameData in route4)
+            gameData.perfect = false;
+        foreach (GameData gameData in route5)
+            gameData.perfect = false;
+        foreach (GameData gameData in route6)
+            gameData.perfect = false;
+
+        foreach (GameData gameData in route7)
+            gameData.perfect = false;
+        foreach (GameData gameData in route8)
+            gameData.perfect = false;
+        foreach (GameData gameData in route9)
+            gameData.perfect = false;
     }
     public void SetPerfect(bool isPerfect)
     {
