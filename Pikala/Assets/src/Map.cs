@@ -10,8 +10,12 @@ public class Map : MonoBehaviour {
     public MainMenuRoute route1;
     public MainMenuRoute route2;
     public MainMenuRoute route3;
-    
-   // public GameObject container;
+
+    // public GameObject container;
+
+    public AnimationClip clipLeft;
+    public AnimationClip clipRight;
+
 
     public GameObject[] items;
 
@@ -82,6 +86,16 @@ public class Map : MonoBehaviour {
             }
             id++;
         }
+    }
+    public void AnimateTo(bool left)
+    {
+        gameObject.layer = 14;
+        if (left)
+            GetComponent<Animation>().clip = clipLeft;
+        else
+            GetComponent<Animation>().clip = clipRight;
+
+        GetComponent<Animation>().Play();
     }
     public void Init()
     {

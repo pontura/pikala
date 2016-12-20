@@ -76,6 +76,7 @@ public class MapMainMenu : MainClass
             Data.Instance.GetComponent<MapInData>().mapID = 2;
         SetActiveMap();
     }
+    int lastActiveMap;
     void SetActiveMap()
     {
         SetButtonsState();
@@ -84,11 +85,17 @@ public class MapMainMenu : MainClass
         map2.gameObject.SetActive(false);
         map3.gameObject.SetActive(false);
 
+        bool rightAnim = false;
+        if (lastActiveMap < Data.Instance.GetComponent<MapInData>().mapID)
+            rightAnim = true;
+
         switch (Data.Instance.GetComponent<MapInData>().mapID)
         {
-            case 0: map1.gameObject.SetActive(true); map1.Init(); break;
-            case 1: map2.gameObject.SetActive(true); map2.Init(); break;
-            case 2: map3.gameObject.SetActive(true); map3.Init(); break;
+            case 0: map1.gameObject.SetActive(true); map1.Init(); map1.AnimateTo(rightAnim); break;
+            case 1: map2.gameObject.SetActive(true); map2.Init(); map2.AnimateTo(rightAnim); break;
+            case 2: map3.gameObject.SetActive(true); map3.Init(); map3.AnimateTo(rightAnim); break;
         }
+       
+        lastActiveMap = Data.Instance.GetComponent<MapInData>().mapID;
     }
 }
