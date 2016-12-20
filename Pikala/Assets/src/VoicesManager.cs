@@ -55,7 +55,6 @@ public class VoicesManager : MonoBehaviour
     }
     void OnVoiceSay(string soundName)
     {
-        print("____________" + soundName);
         string audioName = soundName;
         switch (audioName.ToLower())
         {
@@ -82,6 +81,5 @@ public class VoicesManager : MonoBehaviour
             audioSource.Stop();
         else
             audioSource.PlayOneShot(Resources.Load("SFX/" + audioName) as AudioClip);
-        print("Dice: " + audioName);
     }
 }

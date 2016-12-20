@@ -23,7 +23,7 @@ public class PicturesUI : MonoBehaviour {
                 imageName = "laninaalegre"; break;
         }
         string url = "pictures/picture_" + imageName.ToLower(); //.ToLower();
-        print("PicturesUI " + url);
+
         Sprite sprite = Resources.Load<Sprite>(url);
         imageContainer.sprite = sprite;
     }

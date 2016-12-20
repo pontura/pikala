@@ -31,7 +31,6 @@ public class Map : MonoBehaviour {
     }
     void OnEnable()
     {
-        print("OnEnable  " + isMainMenu);
         if (!isMainMenu)
         {
 
@@ -74,7 +73,7 @@ public class Map : MonoBehaviour {
         }
 
         id = mapID * 3;
-        print(id + "   unlockedItems:    " + unlockedItems);
+
         foreach (Button button in buttons)
         {
             if (id > unlockedItems)
@@ -124,11 +123,9 @@ public class Map : MonoBehaviour {
 
         for (int id = 0; id < route_c.Count; id++)
             route3.Init(id, route_c[id].perfect);
-
-        print("ES es mail menu");
+        
         if (!isMainMenu)
         {
-            print("No es mail menu");
             route1.SetOff();
             route2.SetOff();
             route3.SetOff();

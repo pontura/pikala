@@ -40,7 +40,7 @@ public class BridgeGame : MainClass
     private bool commitError;
     public int wordID;
     private float _x = -5.4f;
-
+    
     public Animation anim;
 
     void Start()
@@ -57,7 +57,7 @@ public class BridgeGame : MainClass
                 addLetters = 2; break;
         }
         AddNewScene();
-        Invoke("Restart", 0.1f);
+        Invoke("Restart", 1f);
 
         GetComponent<DragManager>().enabled = false;
         Events.OnTutorialReady += OnTutorialReady;
@@ -69,7 +69,7 @@ public class BridgeGame : MainClass
     void OnTutorialReady()
     {
         GetComponent<DragManager>().enabled = true;
-        anim.Stop();
+        anim.enabled = false;
     }
     void AddNewScene()
     {
@@ -79,11 +79,11 @@ public class BridgeGame : MainClass
     }
     void Restart()
     {
+
         int vueltaID = Data.Instance.levelsManager.bridges;
         TextsBridge.Vuelta vuelta = Data.Instance.GetComponent<TextsBridge>().vueltas[vueltaID];
         word = vuelta.ok;
         palabra = vuelta.palabra;
-        print(word + " " + palabra);
         avatarsManager.Walk();
         Delayed();
     }

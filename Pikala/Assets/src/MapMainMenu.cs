@@ -17,6 +17,13 @@ public class MapMainMenu : MainClass
         Events.OnSoundFX("listos nuevo recorrido");
 
         Events.RutaSelected += RutaSelected;
+      
+
+        if (Data.Instance.routes.unlockedRoute > 3)
+            Data.Instance.GetComponent<MapInData>().mapID = 1;
+        if (Data.Instance.routes.unlockedRoute > 6)
+            Data.Instance.GetComponent<MapInData>().mapID = 2;
+
         SetActiveMap();
 
         SetButtonsState();
@@ -53,6 +60,7 @@ public class MapMainMenu : MainClass
         //Events.OnShowMap(false);
         Data.Instance.routes.RouteSelected(routeID);
         Data.Instance.levelsManager.LoadNextGame();
+        Data.Instance.levelsManager.RouteSelected(routeID);
     }
     public void Next()
     {

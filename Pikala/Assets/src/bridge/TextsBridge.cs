@@ -7,7 +7,7 @@ using System;
 public class TextsBridge : Texts {
 
     public List<Vuelta> vueltas;
-
+    
     [Serializable]
     public class Vuelta
     {

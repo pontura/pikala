@@ -8,7 +8,7 @@ public class WordUI : MonoBehaviour {
 
     public void Init(string word)
     {
-        field.text = word;
+        field.text = word.ToLower();
     }
     public void Pressed()
     {

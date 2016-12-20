@@ -21,8 +21,6 @@ public class MainMenuRoute : MonoBehaviour {
     }
     public void SetOn(int activeID)
     {
-        print("Set on: " + activeID);
-
         button.SetActive(true);
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName != "Map")

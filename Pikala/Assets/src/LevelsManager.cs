@@ -49,6 +49,22 @@ public class LevelsManager : MonoBehaviour {
         Events.ResetApp -= ResetApp;
         Events.DebugWinLevel -= DebugWinLevel;
     }
+    public void RouteSelected(int routeID)
+    {
+        switch (routeID)
+        {
+            case 1: bridges = 1; monkeys = 0; break;
+            case 2: bridges = 8; monkeys = 8; break;
+            case 3: bridges = 16; monkeys = 16; break;
+            case 4: bridges = 22; monkeys = 22; break;
+            case 5: bridges = 0; monkeys = 2; break;
+            case 6: bridges = 7; monkeys = 10; break;
+            case 7: bridges = 15; monkeys = 18; break;
+            case 8: bridges = 21; monkeys = 26; break;
+            case 9: bridges = 29; monkeys = 4; break;
+        }
+           
+    }
     void ResetApp()
     {
         vueltas = 0;

@@ -46,7 +46,6 @@ public class TimeNoPlayingAudio : MonoBehaviour {
     }
     void OnTutorialReady()
     {
-        print("OnTutorialReady");
         EnableAudio();
     }
     void EnableAudio()
