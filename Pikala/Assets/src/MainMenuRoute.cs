@@ -19,26 +19,36 @@ public class MainMenuRoute : MonoBehaviour {
         foreach (MainMenuRoutePoint point in routePoints)
             point.SetUnPlayed();
     }
-    public void SetOn(int activeID)
+    public void SetOn(int activeID, bool isMainMenu)
     {
+        print("____________MAP Set on: " + activeID);
         button.SetActive(true);
-        string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName != "Map")
-        {
-            int id = 0;
-            foreach (MainMenuRoutePoint point in routePoints)
-            {
-                if (id < activeID)
-                    point.SetPlayed();
-                id++;
-            }
-        }
 
         gameObject.SetActive(true);
         foreach (MainMenuRoutePoint point in routePoints)
             point.SetOff();
 
-        if (activeID > 0 && sceneName != "Map")
+        //  string sceneName = SceneManager.GetActiveScene().name;
+        // if (sceneName != "Map")
+        // {
+        int id = 0;
+        foreach (MainMenuRoutePoint point in routePoints)
+        {
+            if (id < activeID)
+            {
+                point.SetPlayed();
+            }
+            else
+            {
+                point.SetUnPlayed();
+            }
+            id++;
+        }
+      //  }
+
+       
+
+        if (!isMainMenu && activeID > 0)
             routePoints[activeID - 1].SetOn();
     }
     public void SetOff()

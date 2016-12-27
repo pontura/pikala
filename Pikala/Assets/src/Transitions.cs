@@ -22,7 +22,7 @@ public class Transitions : MonoBehaviour {
 	}
     void OnSceneLoaded()
     {
-        SetOff();
+        Invoke("SetOff", 0.7f);
     }
     public void SetOn(bool showMap)
     {

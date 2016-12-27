@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelsManager : MonoBehaviour {
 
-    //comodin para los games que cargan la misma escena:
+    public int[] levelsProgress;
     public int vueltas = 0;
 
     public int monkeys = 0;
@@ -41,6 +41,7 @@ public class LevelsManager : MonoBehaviour {
             bridge_IntroPlayed = true;
             dolphin_IntroPlayed = true;
         }
+        LoadSavedProgress();
     }
     void OnDestroy()
     {
@@ -63,7 +64,7 @@ public class LevelsManager : MonoBehaviour {
             case 8: bridges = 21; monkeys = 26; break;
             case 9: bridges = 29; monkeys = 4; break;
         }
-           
+        GetComponent<WordsUsed>().RutaSelected(routeID);
     }
     void ResetApp()
     {
@@ -110,6 +111,7 @@ public class LevelsManager : MonoBehaviour {
     }
     void OnLevelComplete(GameData.types type, bool commitError)
     {
+        AddProgressToLevel();
         if (commitError)
         {
             if(Random.Range(0,10)<5)
@@ -130,20 +132,20 @@ public class LevelsManager : MonoBehaviour {
         if (Data.Instance.routes.gameID >= 7)
             EndSceneOn();
         else
-            LoadNextGame();
+            LoadNextGame(true);
     }
     void DebugWinLevel()
     {
         Data.Instance.routes.gameID = 6;
         OnLevelComplete(GameData.types.DOLPHIN, true);
     }
-    public void LoadNextGame()
+    public void LoadNextGame(bool showMap)
     {
         Events.OnMusic("marimba");
        GameData gameData =  Data.Instance.routes.GetActualGame();
-       bool showMap = true;
-       if (Data.Instance.routes.gameID == 0)
-           showMap = false;
+      //// bool showMap = true;
+      // if (Data.Instance.routes.gameID == 0)
+      //     showMap = false;
 
        switch(gameData.type)
        {
@@ -174,5 +176,26 @@ public class LevelsManager : MonoBehaviour {
             case 9: routeID = 3; break;
         }
         Data.Instance.LoadLevel("Ending" + routeID, true);
+    }
+    void AddProgressToLevel()
+    {
+        int routeID = Data.Instance.routes.routeID - 1;
+        levelsProgress[routeID]++;
+
+        if (levelsProgress[routeID] == 7)
+            levelsProgress[routeID] = 0;
+
+        PlayerPrefs.SetInt("levelsProgress_" + routeID, levelsProgress[routeID]);
+    }
+    void LoadSavedProgress()
+    {
+        for (int a = 0; a < 8; a++)
+        {
+            levelsProgress[a] = PlayerPrefs.GetInt("levelsProgress_" + a, 0);
+        }
+    }
+    public int GetActualGame(int routeID)
+    {
+        return levelsProgress[routeID - 1];
     }
 }

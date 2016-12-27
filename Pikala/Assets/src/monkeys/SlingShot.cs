@@ -57,7 +57,6 @@ public class SlingShot : MonoBehaviour
     public bool started;
     public void OnTutorialReady()
     {
-        print("OnTutorialReady");
         started = true;
         
     }

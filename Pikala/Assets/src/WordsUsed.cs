@@ -16,16 +16,35 @@ public class WordsUsed : MonoBehaviour {
         public int id;       
     }
 	void Start () {
-        Events.OnAddWordToList += OnAddWordToList;
+       
+        // Events.OnAddWordToList += OnAddWordToList;
+        Invoke("FillWords", 1);
 	}
     void OnDestroy()
     {
-        Events.OnAddWordToList -= OnAddWordToList;
+        //  Events.OnAddWordToList -= OnAddWordToList;
     }
     public void Empty()
     {
         words.Clear();
         lastWordSendedID = -1;
+    }
+    public void RutaSelected(int ruta)
+    {
+        Empty();
+        print("RutaSelected " + ruta);
+        LevelsManager levelsManager = Data.Instance.levelsManager;
+        int monkeys = levelsManager.monkeys;
+        int bridges = levelsManager.bridges;
+        for (int i = 0; i< 8; i++)
+        {            
+            if (monkeys > 29) monkeys = 0;
+            if (bridges > 29) bridges = 0;
+            OnAddWordToList(GameData.types.MONKEY, monkeys);
+            OnAddWordToList(GameData.types.BRIDGE, bridges);
+            monkeys++;
+            bridges++;
+        }
     }
     void OnAddWordToList(GameData.types gameType, int id)
     {

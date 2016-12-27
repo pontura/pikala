@@ -101,13 +101,13 @@ public class Map : MonoBehaviour {
     {
         int routeID = Data.Instance.routes.routeID;
         int gameID = Data.Instance.routes.gameID;
-
-       if(gameID <= 1)
-        {
-            route1.ResetPlayedPoints();
-            route2.ResetPlayedPoints();
-            route3.ResetPlayedPoints();
-        }
+        
+        //if (gameID < 1)
+        //{
+        //    route1.ResetPlayedPoints();
+        //    route2.ResetPlayedPoints();
+        //    route3.ResetPlayedPoints();
+        //}
 
         List<GameData> route_a = Data.Instance.routes.route1;
         List<GameData> route_b = Data.Instance.routes.route2;
@@ -145,11 +145,11 @@ public class Map : MonoBehaviour {
             route3.SetOff();
 
             if (routeID == 1 || routeID == 4 || routeID == 7)
-                route1.SetOn(gameID);
+                route1.SetOn(gameID, false);
             else if (routeID == 2 || routeID == 5 || routeID == 8)
-                route2.SetOn(gameID);
+                route2.SetOn(gameID, false);
             else
-                route3.SetOn(gameID);
+                route3.SetOn(gameID, false);
         }
         
     }

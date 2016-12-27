@@ -141,7 +141,7 @@ public class Routes : MonoBehaviour {
     }
     public void RouteSelected(int routeID)
     {
-        gameID = 0;
+        gameID = Data.Instance.levelsManager.GetActualGame(routeID);
         this.routeID = routeID;
     }
     public void NextLevel()

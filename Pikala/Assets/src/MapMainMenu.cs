@@ -57,9 +57,8 @@ public class MapMainMenu : MainClass
     }
     public void RutaSelected(int routeID)
     {
-        //Events.OnShowMap(false);
         Data.Instance.routes.RouteSelected(routeID);
-        Data.Instance.levelsManager.LoadNextGame();
+        Data.Instance.levelsManager.LoadNextGame(false);
         Data.Instance.levelsManager.RouteSelected(routeID);
     }
     public void Next()
