@@ -4,11 +4,12 @@ using System.Collections;
 public class AudioSourcePauser : MonoBehaviour {
 
     bool pausedByTimeScale;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        if(audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 	void Update () {
         if (Time.timeScale == 0 && audioSource.isPlaying)

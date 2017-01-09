@@ -15,6 +15,14 @@ public class Dashboard : MainClass {
     public GameObject off2;
     public GameObject off3;
 
+    public GameObject off4;
+    public GameObject off5;
+    public GameObject off6;
+
+    public GameObject off7;
+    public GameObject off8;
+    public GameObject off9;
+
     public Image progressPerLevel;
 
     void Start () {
@@ -29,13 +37,35 @@ public class Dashboard : MainClass {
         off2.SetActive(true);
         off3.SetActive(true);
 
+        off4.SetActive(true);
+        off5.SetActive(true);
+        off6.SetActive(true);
 
-        if (Data.Instance.GetComponent<Routes>().unlockedRoute >0)
-            off1.SetActive(false);
+        off7.SetActive(true);
+        off8.SetActive(true);
+        off9.SetActive(true);
+
+
         if (Data.Instance.GetComponent<Routes>().unlockedRoute >1)
-            off2.SetActive(false);
+            off1.SetActive(false);
         if (Data.Instance.GetComponent<Routes>().unlockedRoute >2)
+            off2.SetActive(false);
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute >3)
             off3.SetActive(false);
+
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 4)
+            off4.SetActive(false);
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 5)
+            off5.SetActive(false);
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 6)
+            off6.SetActive(false);
+
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 7)
+            off7.SetActive(false);
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 8)
+            off8.SetActive(false);
+        if (Data.Instance.GetComponent<Routes>().unlockedRoute > 9)
+            off9.SetActive(false);
 
         progressPerLevel.fillAmount = Data.Instance.routes.GetTotalPerfectAmount();
     }

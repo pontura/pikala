@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PicturesUI : MonoBehaviour {
 
@@ -33,6 +34,9 @@ public class PicturesUI : MonoBehaviour {
     }
     public void Pressed()
     {
-        Events.OnSayCorrectWord();
+        if (SceneManager.GetActiveScene().name == "Game_Frogger")
+            Events.OnSayCorrectWordReal();
+        else
+            Events.OnSayCorrectWord();
     }
 }

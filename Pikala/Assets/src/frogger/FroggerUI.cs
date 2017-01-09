@@ -23,6 +23,7 @@ public class FroggerUI : MonoBehaviour
 
         Events.OnGotWord += OnGotWord;
         Events.OnSayCorrectWord += OnSayCorrectWord;
+        Events.OnSayCorrectWordReal += OnSayCorrectWordReal;
         Events.OnTutorialReady += OnTutorialReady;
 
         ui.gameObject.SetActive(true);
@@ -74,6 +75,7 @@ public class FroggerUI : MonoBehaviour
     {
         Events.OnGotWord -= OnGotWord;
         Events.OnSayCorrectWord -= OnSayCorrectWord;
+        Events.OnSayCorrectWordReal -= OnSayCorrectWordReal;
         Events.OnTutorialReady -= OnTutorialReady;
     }
     void ResetWord()

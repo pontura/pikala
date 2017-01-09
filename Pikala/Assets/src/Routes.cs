@@ -100,7 +100,7 @@ public class Routes : MonoBehaviour {
     void UnlockNextRoute()
     {
         unlockedRoute++;
-        if(unlockedRoute<4)
+        if(unlockedRoute<10)
             PlayerPrefs.SetInt("unlockedRoute", unlockedRoute);
     }
     void ResetApp()

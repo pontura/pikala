@@ -20,6 +20,8 @@ public static class Events {
     public static System.Action<string> OnVoiceSay = delegate { };
     public static System.Action OnTutorialReady = delegate { };
     public static System.Action OnSayCorrectWord = delegate { };
+    public static System.Action OnSayCorrectWordReal = delegate { };
+    
     public static System.Action OnSayCorrectWord_with_beep = delegate { };
     public static System.Action<string, float> OnVoiceSayFromList = delegate { };
     public static System.Action ResetTimeToSayNotPlaying = delegate { };

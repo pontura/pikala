@@ -17,6 +17,7 @@ public class ProgressData : MonoBehaviour {
         Events.OnAddWordToList += OnAddWordToList;
         Events.OnAddFinalWordToList += OnAddFinalWordToList;
         Events.OnAddWrongWord += OnAddWrongWord;
+        Events.ResetApp += ResetApp;
         GetSavedWords();
     }
     void OnDestroy()
@@ -24,6 +25,14 @@ public class ProgressData : MonoBehaviour {
         Events.OnAddWordToList -= OnAddWordToList;
         Events.OnAddFinalWordToList -= OnAddFinalWordToList;
         Events.OnAddWrongWord -= OnAddWrongWord;
+        Events.ResetApp -= ResetApp;
+    }
+    void ResetApp ()
+    {
+        well1.Clear();
+        well2.Clear();
+        well3.Clear();
+        well4.Clear();
     }
     void GetSavedWords()
     {
