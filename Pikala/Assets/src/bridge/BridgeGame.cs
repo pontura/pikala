@@ -16,7 +16,7 @@ public class BridgeGame : MainClass
 
     public states state;
     public enum states
-    {   
+    {
         LOADING,
         INTRO,
         PLAYING,
@@ -40,7 +40,7 @@ public class BridgeGame : MainClass
     private bool commitError;
     public int wordID;
     private float _x = -5.4f;
-    
+
     public Animation anim;
 
     void Start()
@@ -102,15 +102,15 @@ public class BridgeGame : MainClass
         {
             Slot newSlot = Instantiate(slot);
             newSlot.transform.SetParent(slotsContainer);
-            newSlot.transform.localPosition = new Vector2(separation*a, 0);
-            newSlot.transform.localEulerAngles = new Vector3(0,0,Random.Range(0,6)-3);
+            newSlot.transform.localPosition = new Vector2(separation * a, 0);
+            newSlot.transform.localEulerAngles = new Vector3(0, 0, Random.Range(0, 6) - 3);
             newSlot.transform.localScale = new Vector3(scales, scales, scales);
             newSlot.id = a + 1;
             wordsToUse.Add("" + word[a]);
         }
 
-        for (int a = 0; a<addLetters; a++)
-            wordsToUse.Add(letters[Random.Range(0,letters.Length)]);
+        for (int a = 0; a < addLetters; a++)
+            wordsToUse.Add(letters[Random.Range(0, letters.Length)]);
 
         Utils.ShuffleListTexts(wordsToUse);
 
@@ -162,6 +162,7 @@ public class BridgeGame : MainClass
         state = states.PLAYING;
         avatarsManager.Idle();
     }
+    public bool wrongWordDone;
     void CheckGameStatus()
     {
         bool wrong = false;
@@ -174,32 +175,32 @@ public class BridgeGame : MainClass
             {
                 if (slot.letter != "")
                 {
-                    print("ERROR " + slot.letter  + "  Deberia ser: " + word[id]);
+                    print("ERROR " + slot.letter + "  Deberia ser: " + word[id]);
                     //commitError = true;
-                   // TakeItemOutFromSlot(slot);
+                    // TakeItemOutFromSlot(slot);
                 }
-                wrong = true;    
+                wrong = true;
             }
             id++;
         }
         if (!wrong)
         {
-            Events.OnAddWordToList(GameData.types.BRIDGE, Data.Instance.levelsManager.bridges);
+            if (!wrongWordDone)
+                Events.OnAddWordToList(GameData.types.BRIDGE, Data.Instance.levelsManager.bridges);
+
             wordID++;
-            Events.OnOkWord(GameData.types.BRIDGE);          
+            Events.OnOkWord(GameData.types.BRIDGE);
 
             StartCoroutine(Jumps());
             return;
-        }
-        else
-        {
-            Events.OnAddWrongWord(palabra);
         }
         if (totalWordsInGame == word.Length)
         {
             if (wrong)
             {
+                wrongWordDone = true;
                 commitError = true;
+                Events.OnAddWrongWord(palabra);
             }
             id = 0;
             foreach (Slot slot in bridgeScenaryActive.SlotContainer.GetComponentsInChildren<Slot>())
@@ -235,14 +236,14 @@ public class BridgeGame : MainClass
         }
         return null;
     }
-    
+
     IEnumerator Jumps()
     {
-        yield return new WaitForSeconds(0.5f);        
+        yield return new WaitForSeconds(0.5f);
         state = states.JUMPING;
         foreach (Slot slot in bridgeScenaryActive.SlotContainer.GetComponentsInChildren<Slot>())
         {
-            _x = slot.transform.position.x-0.4f;
+            _x = slot.transform.position.x - 0.4f;
             print(_x);
             avatarsManager.Jump();
             yield return new WaitForSeconds(timeBetweenJumps);
@@ -254,7 +255,7 @@ public class BridgeGame : MainClass
             Events.OnGameReady();
 
         yield return new WaitForSeconds(0.2f);
-        _x = 13.7f + (bridgeScenary_x_separation * (wordID-1));
+        _x = 13.7f + (bridgeScenary_x_separation * (wordID - 1));
         avatarsManager.Run();
         if (Data.Instance.levelsManager.vueltas == Data.Instance.routes.GetTotalWordsOfActiveGame())
         {
@@ -265,6 +266,7 @@ public class BridgeGame : MainClass
         }
         else
         {
+            wrongWordDone = false;
             AddNewScene();
             state = states.SCROLL;
         }
@@ -285,11 +287,12 @@ public class BridgeGame : MainClass
         {
             Vector2 pos = avatarsManager.nene.transform.position;
             if (pos.x < _x)
-                pos.x += Time.deltaTime * (speedJump/2);
+                pos.x += Time.deltaTime * (speedJump / 2);
             else
                 StartGame();
             UpdatePositions(pos);
-        } else
+        }
+        else
         if (state == states.SCROLL)
         {
             if (cam.transform.position.x < bridgeScenary_x_separation * wordID)
@@ -298,7 +301,7 @@ public class BridgeGame : MainClass
             {
                 Restart();
             }
-        } 
+        }
         if (state == states.JUMPING || state == states.SCROLL)
         {
             Vector2 pos = avatarsManager.nene.transform.position;
