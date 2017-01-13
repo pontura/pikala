@@ -43,7 +43,6 @@ public class GameManager : MainClass
    void OnTutorialReady()
     {
         tutorialAnim.Stop();
-        print("OnTutorialReady");
         slingshot.OnTutorialReady();
         CurrentGameState = GameState.Start;
         slingshot.enabled = false;

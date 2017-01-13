@@ -64,6 +64,15 @@ public class LevelsManager : MonoBehaviour {
             case 8: bridges = 21; monkeys = 26; break;
             case 9: bridges = 29; monkeys = 4; break;
         }
+        if(levelsProgress[routeID-1] >=3)
+        {
+            bridges += 4;
+            monkeys += 4;
+            if (bridges > 29) bridges = bridges - 30;
+            if (monkeys > 29) monkeys = monkeys - 30;
+        }
+        print("_______bridges: " + bridges + " monkeys: " + monkeys);
+        
         GetComponent<WordsUsed>().RutaSelected(routeID);
     }
     void ResetApp()
@@ -78,6 +87,11 @@ public class LevelsManager : MonoBehaviour {
         bridge_IntroPlayed = false;
         dolphin_IntroPlayed = false;
         monkey_IntroPlayed = false;
+
+        for(int a = 0; a<9; a++)
+        {
+            levelsProgress[a] = 0;
+        }
     }
     void OnOkWord(GameData.types type)
     {
@@ -189,7 +203,7 @@ public class LevelsManager : MonoBehaviour {
     }
     void LoadSavedProgress()
     {
-        for (int a = 0; a < 8; a++)
+        for (int a = 0; a < 9; a++)
         {
             levelsProgress[a] = PlayerPrefs.GetInt("levelsProgress_" + a, 0);
         }

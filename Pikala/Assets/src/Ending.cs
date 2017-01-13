@@ -13,13 +13,15 @@ public class Ending : MainClass {
     public AvatarsManager avatarsManager;
     bool winPremio;
 
-	void Start () {
+    void Start() {
+        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(false);
+
         avatarsManager = GetComponent<AvatarsManager>();
         readySignal.SetActive(false);
         int routeID = Data.Instance.routes.routeID;
         int count;
 
-        unlockedItems =  Data.Instance.GetComponent<Items>().unlockedItems;
+        unlockedItems = Data.Instance.GetComponent<Items>().unlockedItems;
 
         if (unlockedItems >= Data.Instance.routes.routeID)
         {
@@ -29,7 +31,7 @@ public class Ending : MainClass {
         count = Data.Instance.GetComponent<Items>().items.Count;
         audioName = Data.Instance.GetComponent<Items>().items[unlockedItems].audio;
         isHe = Data.Instance.GetComponent<Items>().items[unlockedItems].isHe;
-         
+
 
         EndingItems newItems = Instantiate(endingItems);
         newItems.transform.SetParent(container);
@@ -44,11 +46,15 @@ public class Ending : MainClass {
             winPremio = true;
         }
         else
-        {            
+        {
             Invoke("Continue", 3);
             winPremio = false;
         }
-	}
+    } 
+    void OnDestroy()
+    {
+        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(true);
+    }
     public void DiceRegalo()
     {
         if(isHe)

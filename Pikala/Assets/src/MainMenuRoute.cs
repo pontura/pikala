@@ -7,11 +7,16 @@ public class MainMenuRoute : MonoBehaviour {
     public MainMenuRoutePoint[] routePoints;
     public GameObject button;
 
-    public void Init(int activeID, bool perfect)
+    public void Init(int activeID, bool perfect, bool toBePlayed)
     {
         //print("MAP : Init  " + activeID + "            perfect: " + perfect);
         routePoints[activeID].Init(perfect);
         button.SetActive(true);
+        if (toBePlayed)
+        {
+            print(activeID + " - " + perfect + " - " + toBePlayed);
+            routePoints[activeID].ToBePlayed();
+        }
     }
     public void ResetPlayedPoints()
     {
@@ -21,7 +26,6 @@ public class MainMenuRoute : MonoBehaviour {
     }
     public void SetOn(int activeID, bool isMainMenu)
     {
-        print("____________MAP Set on: " + activeID);
         button.SetActive(true);
 
         gameObject.SetActive(true);

@@ -15,7 +15,7 @@ public class Data : MonoBehaviour
     public string lastScene;
     public string newScene;
     public Routes routes;
-    private float time_ViewingMap = 7.5f;
+    private float time_ViewingMap = 7.3f;
 
     public static Data Instance
     {

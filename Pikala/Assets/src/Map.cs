@@ -101,13 +101,16 @@ public class Map : MonoBehaviour {
     {
         int routeID = Data.Instance.routes.routeID;
         int gameID = Data.Instance.routes.gameID;
-        
+
         //if (gameID < 1)
         //{
         //    route1.ResetPlayedPoints();
         //    route2.ResetPlayedPoints();
         //    route3.ResetPlayedPoints();
         //}
+        int route1_toBePlayedID = -1;
+        int route2_toBePlayedID = -1;
+        int route3_toBePlayedID = -1;
 
         List<GameData> route_a = Data.Instance.routes.route1;
         List<GameData> route_b = Data.Instance.routes.route2;
@@ -119,24 +122,61 @@ public class Map : MonoBehaviour {
                 route_a = Data.Instance.routes.route4;
                 route_b = Data.Instance.routes.route5;
                 route_c = Data.Instance.routes.route6;
+                if(Data.Instance.routes.unlockedRoute>=4)
+                    route1_toBePlayedID = Data.Instance.levelsManager.levelsProgress[3];
+                if (Data.Instance.routes.unlockedRoute >= 5)
+                    route2_toBePlayedID = Data.Instance.levelsManager.levelsProgress[4];
+                if (Data.Instance.routes.unlockedRoute >= 6)
+                    route3_toBePlayedID = Data.Instance.levelsManager.levelsProgress[5];
                 break;
 
             case 2:
                 route_a = Data.Instance.routes.route7;
                 route_b = Data.Instance.routes.route8;
                 route_c = Data.Instance.routes.route9;
+
+                if (Data.Instance.routes.unlockedRoute >= 7)
+                    route1_toBePlayedID = Data.Instance.levelsManager.levelsProgress[6];
+                if (Data.Instance.routes.unlockedRoute >= 8)
+                    route2_toBePlayedID = Data.Instance.levelsManager.levelsProgress[7];
+                if (Data.Instance.routes.unlockedRoute >= 9)
+                    route3_toBePlayedID = Data.Instance.levelsManager.levelsProgress[8];
+                break;
+
+            default:
+                if (Data.Instance.routes.unlockedRoute >= 0)
+                    route1_toBePlayedID = Data.Instance.levelsManager.levelsProgress[0];
+                if (Data.Instance.routes.unlockedRoute >= 1)
+                    route2_toBePlayedID = Data.Instance.levelsManager.levelsProgress[1];
+                if (Data.Instance.routes.unlockedRoute >= 2)
+                    route3_toBePlayedID = Data.Instance.levelsManager.levelsProgress[2];
                 break;
 
         }
 
+        
         for (int id = 0; id < route_a.Count; id++)
-            route1.Init(id, route_a[id].perfect);
+        {
+            bool toBePlayed = false;
+            if (id == route1_toBePlayedID) toBePlayed = true;
+            route1.Init(id, route_a[id].perfect, toBePlayed);
+        }
 
         for (int id = 0; id < route_b.Count; id++)
-            route2.Init(id, route_b[id].perfect);
+        {
+            bool toBePlayed = false;
+            if (id == route2_toBePlayedID) toBePlayed = true;
+            route2.Init(id, route_b[id].perfect, toBePlayed);
+        }
+            
 
         for (int id = 0; id < route_c.Count; id++)
-            route3.Init(id, route_c[id].perfect);
+        {
+            bool toBePlayed = false;
+            if (id == route3_toBePlayedID) toBePlayed = true;
+            route3.Init(id, route_c[id].perfect, toBePlayed);
+        }
+           
         
         if (!isMainMenu)
         {

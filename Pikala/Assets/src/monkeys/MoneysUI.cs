@@ -85,7 +85,7 @@ public class MoneysUI : MonoBehaviour {
     }
     private void OnGotBanana(string text)
     {
-        print("OnGotBanana   " + text);
+      //  print("OnGotBanana   " + text);
 
         if (ResetRoutine != null)
             StopCoroutine(ResetRoutine);

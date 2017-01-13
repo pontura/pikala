@@ -39,6 +39,11 @@ public class MainMenuRoutePoint : MonoBehaviour {
         }        
         
     }
+    public void ToBePlayed()
+    {
+        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().Play("point_win");
+    }
     public void SetPlayed()
     {
         played = true;

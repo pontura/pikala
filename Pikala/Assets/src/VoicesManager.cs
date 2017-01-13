@@ -31,7 +31,7 @@ public class VoicesManager : MonoBehaviour
     AudioClip sayInDelay = null;
     void OnVoiceSayFromList(string listName, float delay)
     {
-        print("____________ OnVoiceSayFromList " + listName);
+       // print("____________ OnVoiceSayFromList " + listName);
         if (listName == "")
             audioSource.Stop();
         else

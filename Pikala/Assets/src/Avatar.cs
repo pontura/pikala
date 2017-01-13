@@ -13,7 +13,7 @@ public class Avatar : MonoBehaviour {
 	}
     public void MonkeyActiveGomera(bool isActive)
     {
-        print("MonkeyActiveGomera " + isActive);
+       // print("MonkeyActiveGomera " + isActive);
         if (isActive)
         {
             anim.Play("boy_monkey_rotate", 0, 0);

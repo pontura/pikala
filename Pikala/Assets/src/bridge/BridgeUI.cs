@@ -21,6 +21,7 @@ public class BridgeUI : MonoBehaviour
     }
     void Start()
     {
+        pictureUI.gameObject.SetActive(false);
         totalWordsPlayed = 0;
         Events.OnOkWord += OnOkWord;
         Events.OnGameReady += OnGameReady;
@@ -53,7 +54,7 @@ public class BridgeUI : MonoBehaviour
     }
     void OnTutorialReady()
     {
-        pictureUI.gameObject.SetActive(true);
+       
         Invoke("Delayed", 0.1f);
         tutorialAnim.Stop();
     }
@@ -69,6 +70,11 @@ public class BridgeUI : MonoBehaviour
         realWord = textsBridge.GetPalabraReal(Data.Instance.GetComponent<TextsBridge>().vueltas[vuelta].palabra);
         lastRealWord = realWord;
         field.text = realWord;
+        Invoke("DelayToWord", 1.5f);      
+    }
+    void DelayToWord()
+    {
+        pictureUI.gameObject.SetActive(true);
         pictureUI.Init(realWord);
 
         if (totalWordsPlayed < 4)
