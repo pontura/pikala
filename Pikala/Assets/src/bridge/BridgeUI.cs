@@ -21,7 +21,7 @@ public class BridgeUI : MonoBehaviour
     }
     void Start()
     {
-        pictureUI.gameObject.SetActive(false);
+       
         totalWordsPlayed = 0;
         Events.OnOkWord += OnOkWord;
         Events.OnGameReady += OnGameReady;
@@ -37,7 +37,7 @@ public class BridgeUI : MonoBehaviour
         }
         else
         {
-            
+            pictureUI.gameObject.SetActive(false);
             Invoke("DelayedOnTutorialReady", 0.1f);
         }
     }
