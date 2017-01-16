@@ -57,7 +57,7 @@ public class BridgeGame : MainClass
                 addLetters = 2; break;
         }
         AddNewScene();
-        Invoke("Restart", 1f);
+        Invoke("Restart", 0.1f);
 
         GetComponent<DragManager>().enabled = false;
         Events.OnTutorialReady += OnTutorialReady;
@@ -287,7 +287,7 @@ public class BridgeGame : MainClass
         {
             Vector2 pos = avatarsManager.nene.transform.position;
             if (pos.x < _x)
-                pos.x += Time.deltaTime * (speedJump / 2);
+                pos.x += Time.deltaTime * (speedJump *2);
             else
                 StartGame();
             UpdatePositions(pos);
