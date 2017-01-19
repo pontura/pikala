@@ -26,7 +26,8 @@ public class Dashboard : MainClass {
     public Image progressPerLevel;
 
     void Start () {
-        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(false);
+        Data.Instance.stats.TrackEvent("Dashboard");
+        Data.Instance.GetComponent<SettingsScreen>().settingsButton.SetActive(false);
         ProgressData data = Data.Instance.GetComponent<ProgressData>();
         Create(content1, data.well1);
         Create(content2, data.well2);
@@ -81,7 +82,7 @@ public class Dashboard : MainClass {
     }
     public void Close()
     {
-        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(true);
+        Data.Instance.GetComponent<SettingsScreen>().settingsButton.SetActive(true);
         Data.Instance.LoadLevel("MainMenu", false);
     }
 }

@@ -30,6 +30,8 @@ public class Diploma : MonoBehaviour
 
         if (!Data.Instance.routes.CheckIfAllPerfect()) return;
 
+        Data.Instance.stats.TrackEvent("Gana_Diploma");
+
         print("win diploma");
         PlayerPrefs.SetInt("diploma", 1);
         diploma = 1;

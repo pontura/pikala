@@ -16,6 +16,7 @@ public class Data : MonoBehaviour
     public string newScene;
     public Routes routes;
     private float time_ViewingMap = 7.3f;
+    public StatsManager stats;
 
     public static Data Instance
     {
@@ -80,5 +81,6 @@ public class Data : MonoBehaviour
         levelsManager = GetComponent<LevelsManager>();
         routes = GetComponent<Routes>();
         wordsUsed = GetComponent<WordsUsed>();
+        stats = GetComponent<StatsManager>();
     }
 }

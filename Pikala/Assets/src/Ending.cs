@@ -14,7 +14,9 @@ public class Ending : MainClass {
     bool winPremio;
 
     void Start() {
-        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(false);
+        Data.Instance.stats.TrackEvent("fin_recorrido", Data.Instance.routes.routeID);
+
+        Data.Instance.GetComponent<SettingsScreen>().settingsButton.SetActive(false);
 
         avatarsManager = GetComponent<AvatarsManager>();
         readySignal.SetActive(false);
@@ -53,7 +55,7 @@ public class Ending : MainClass {
     } 
     void OnDestroy()
     {
-        Data.Instance.GetComponent<Settings>().settingsButton.SetActive(true);
+        Data.Instance.GetComponent<SettingsScreen>().settingsButton.SetActive(true);
     }
     public void DiceRegalo()
     {
@@ -66,6 +68,8 @@ public class Ending : MainClass {
         Events.OnSoundFX("premios/" + audioName);
         Invoke("Tent", 3);
         Invoke("ResetFelicita", 2);
+       
+        Data.Instance.stats.TrackEvent("premio_" + audioName);
     }
     void ResetFelicita()
     {
