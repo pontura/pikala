@@ -5,11 +5,12 @@ public class DolphinManager : MonoBehaviour {
 
     public Dolphin dolphin;
     public Lanes lanes;
-
+    private bool playing;
     void Start()
     {
         Events.OnSwipe += OnSwipe;
         Events.OnChangeLaneComplete += OnChangeLaneComplete;
+        Events.OnLevelComplete += OnLevelComplete;
     }
     public void Init()
     {        
@@ -20,14 +21,19 @@ public class DolphinManager : MonoBehaviour {
     }
     void Delay()
     {
+        playing = true;
         lanes.sortInLayersByLane(dolphin.gameObject, lanes.GetActivetLane().id);
     }
     void OnDestroy()
     {
         Events.OnSwipe -= OnSwipe;
         Events.OnChangeLaneComplete -= OnChangeLaneComplete;
+        Events.OnLevelComplete -= OnLevelComplete;
     }
-
+    void OnLevelComplete(GameData.types t, bool b)
+    {
+        playing = false;
+    }
     public void UpdatePosition(float _x)
     {
        Vector3 pos = dolphin.transform.position;
@@ -37,6 +43,7 @@ public class DolphinManager : MonoBehaviour {
     private float lastKeyPressedTime;
     void OnSwipe(SwipeDetector.directions direction)
     {
+        if (!playing) return;
         if (DolphinGame.Instance.dolphinGameManager.state == DolphinGameManager.states.TUTORIAL) return;
         if (DolphinGame.Instance.dolphinGameManager.state == DolphinGameManager.states.FINISH) return;
         if (DolphinGame.Instance.state != DolphinGame.states.PLAYING) return;
